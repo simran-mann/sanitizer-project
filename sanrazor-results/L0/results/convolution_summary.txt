@@ -1,0 +1,12 @@
+Benchmark         : convolution
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.018s
+  SanRazor        : 0.016s
+  Speedup         : 1.12x
+─────────────────────────────────────────
+Static analysis on SanRazor IR:
+  Bitcode file    : /home/project/sanrazor_state/objects/convolution.orig.bc
+  LLVM IR file    : /home/project/sanrazor-results/results/convolution_sr.ll
+  Check pattern   : call.*(@__asan_|@__ubsan_|@.*check|@.*san)
+  Matched checks  : 0
