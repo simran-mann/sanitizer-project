@@ -1,0 +1,12 @@
+Benchmark         : linear-algebra/kernels/gemm/gemm
+─────────────────────────────────────────
+Static check counts:
+  Baseline checks : 162
+  Final checks    : 53
+  Removed checks  : 109
+  Reduction       : 67%
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 110.886s
+  Optimised       : 39.826s
+  Speedup         : 2.78x

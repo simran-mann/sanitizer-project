@@ -1,0 +1,12 @@
+Benchmark         : medley/reg_detect/reg_detect
+─────────────────────────────────────────
+Static check counts:
+  Baseline checks : 210
+  Final checks    : 58
+  Removed checks  : 152
+  Reduction       : 72%
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 1.785s
+  Optimised       : 0.509s
+  Speedup         : 3.51x

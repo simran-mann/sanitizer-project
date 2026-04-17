@@ -1,0 +1,12 @@
+Benchmark         : datamining/covariance/covariance
+─────────────────────────────────────────
+Static check counts:
+  Baseline checks : 159
+  Final checks    : 49
+  Removed checks  : 110
+  Reduction       : 69%
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 52.586s
+  Optimised       : 29.315s
+  Speedup         : 1.79x

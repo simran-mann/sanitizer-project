@@ -1,0 +1,10 @@
+DEBUG PRINT::: lambda callback called with: instrument
+DEBUG PRINT::: lambda callback called with: remove-redundant
+
+========================================
+           Statistics           
+========================================
+  Total memory accesses : 0
+  Checks inserted       : 0
+  Checks removed        : 0
+  Final checks          : 0
