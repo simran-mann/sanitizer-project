@@ -42,6 +42,6 @@ tar -xvf polybench-3.1.tar.gz
             - default value: "summary_table.txt"
 ```
 ./scripts/build_and_run_polybench.sh 'relative-path-to-polybench-3.1'
-./scripts/build_and_run_polybench.sh 'relative-path-to-polybench-3.1' 02
-./scripts/build_and_run_polybench.sh 'relative-path-to-polybench-3.1' 02 "polybench_summary_table.txt."
+./scripts/build_and_run_polybench.sh 'relative-path-to-polybench-3.1' O2
+./scripts/build_and_run_polybench.sh 'relative-path-to-polybench-3.1' O0 "polybench_summary_table.txt."
 ```
