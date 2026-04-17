@@ -5,3 +5,5 @@ build/
 *.out
 *.ll
 *.bc
+scratch/
+sanrazor_state/

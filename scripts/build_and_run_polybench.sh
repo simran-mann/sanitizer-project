@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-SHOW_HELP=0
-POLY_DIR=""
 USE_POLYBENCH=1
+SHOW_HELP=0
+POLY_DIR=1
 OPT_LEVEL="O0"
 SUMMARY_OUT="summary_table.txt"
 
@@ -36,14 +36,8 @@ fi
 POLY_DIR="$1"
 shift
 
-LLVM_VER=""
 OPT_LEVEL="O0"
 SUMMARY_OUT="summary_table.txt"
-
-if [[ $# -gt 0 ]]; then
-    LLVM_VER="$1"
-    shift
-fi
 
 if [[ $# -gt 0 ]]; then
     OPT_LEVEL="$1"
@@ -68,15 +62,14 @@ esac
 
 find_tool() {
     local name="$1"
-    if [[ -n "$LLVM_VER" ]] && command -v "${name}-${LLVM_VER}" &>/dev/null; then
-        echo "${name}-${LLVM_VER}"
-    elif command -v "$name" &>/dev/null; then
+    if command -v "$name" &>/dev/null; then
         echo "$name"
     else
         echo "ERROR: '$name' not found." >&2
         exit 1
     fi
 }
+
 
 CLANG=$(find_tool clang)
 OPT=$(find_tool opt)

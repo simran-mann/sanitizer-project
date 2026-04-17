@@ -1,9 +1,0 @@
-DEBUG PRINT::: lambda callback called with: instrument
-
-========================================
-           Statistics           
-========================================
-  Total memory accesses : 0
-  Checks inserted       : 0
-  Checks removed        : 0
-  Final checks          : 0

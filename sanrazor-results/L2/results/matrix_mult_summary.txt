@@ -1,0 +1,12 @@
+Benchmark         : matrix_mult
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.017s
+  SanRazor        : 0.022s
+  Speedup         : 0.77x
+─────────────────────────────────────────
+Static analysis on SanRazor IR:
+  Bitcode file    : /home/project/sanrazor_state/objects/matrix_mult.orig.bc
+  LLVM IR file    : /home/project/sanrazor-results/results/matrix_mult_sr.ll
+  Check pattern   : call.*(@__asan_|@__ubsan_|@.*check|@.*san)
+  Matched checks  : 0

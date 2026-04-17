@@ -1,0 +1,12 @@
+Benchmark         : binary_search
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.260s
+  SanRazor        : 0.261s
+  Speedup         : 1.00x
+─────────────────────────────────────────
+Static analysis on SanRazor IR:
+  Bitcode file    : /home/project/sanrazor_state/objects/binary_search.orig.bc
+  LLVM IR file    : /home/project/sanrazor-results/results/binary_search_sr.ll
+  Check pattern   : call.*(@__asan_|@__ubsan_|@.*check|@.*san)
+  Matched checks  : 0
