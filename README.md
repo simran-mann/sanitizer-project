@@ -41,7 +41,12 @@ tar -xvf polybench-3.1.tar.gz
         - summary table file name: "polybench_summary_table.txt"
             - default value: "summary_table.txt"
 ```
+mkdir build && cd build
+cmake .. -DLLVM_DIR=$(llvm-config --cmakedir)
+cd ..
+
+# examples of command line arguments to run the script:
 ./scripts/build_and_run_polybench.sh 'relative-path-to-polybench-3.1'
-./scripts/build_and_run_polybench.sh 'relative-path-to-polybench-3.1' 02
-./scripts/build_and_run_polybench.sh 'relative-path-to-polybench-3.1' 02 "polybench_summary_table.txt."
+./scripts/build_and_run_polybench.sh 'relative-path-to-polybench-3.1' O2
+./scripts/build_and_run_polybench.sh 'relative-path-to-polybench-3.1' O0 "polybench_summary_table.txt."
 ```
