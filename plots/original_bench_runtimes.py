@@ -51,15 +51,15 @@ def plot_clustered_stacked(o0_file, o2_file, sz_l0_path, sz_l2_path, output_png)
 
     # plot baseline 
     plt.bar(x - width, base_o2, width, label='Base (O2)', color='#ff7bac')
-    plt.bar(x - width, base_diff, width, bottom=base_o2, label='Base (O0 Overhead)', color='#ff7bac', alpha=0.4)
+    plt.bar(x - width, base_diff, width, bottom=base_o2, label='Base (O0)', color='#ff7bac', alpha=0.4)
 
     # plot optimized 
     plt.bar(x, opt_o2, width, label='Opt (O2)', color='#52a5ce')
-    plt.bar(x, opt_diff, width, bottom=opt_o2, label='Opt (O0 Overhead)', color='#52a5ce', alpha=0.4)
+    plt.bar(x, opt_diff, width, bottom=opt_o2, label='Opt (O0)', color='#52a5ce', alpha=0.4)
 
     # plot Sanrazor
     plt.bar(x + width, sz_o2_vals, width, label='SanRazor (O2)', color='#7ed6a5')
-    plt.bar(x + width, sz_diff, width, bottom=sz_o2_vals, label='SanRazor (O0 Overhead)', color='#7ed6a5', alpha=0.4)
+    plt.bar(x + width, sz_diff, width, bottom=sz_o2_vals, label='SanRazor (O0)', color='#7ed6a5', alpha=0.4)
 
 
     # formatting

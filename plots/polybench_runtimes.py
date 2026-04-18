@@ -45,12 +45,12 @@ def plot_polybench_dual_stacked(o0_path, o2_path, output_png):
     plt.figure(figsize=(16, 8))
 
     # plot base
-    plt.bar(x - width/2, base_o2, width, label='Baseline (O2)', color='#ff7bac')
-    plt.bar(x - width/2, base_diff, width, bottom=base_o2, label='Baseline (O0 Overhead)', color='#ff7bac', alpha=0.4)
+    plt.bar(x - width/2, base_o2, width, label='Base (O2)', color='#ff7bac')
+    plt.bar(x - width/2, base_diff, width, bottom=base_o2, label='Base (O0)', color='#ff7bac', alpha=0.4)
 
     # plot opt
-    plt.bar(x + width/2, opt_o2, width, label='Optimized (O2)', color='#52a5ce')
-    plt.bar(x + width/2, opt_diff, width, bottom=opt_o2, label='Optimized (O0 Overhead)', color='#52a5ce', alpha=0.4)
+    plt.bar(x + width/2, opt_o2, width, label='Opt (O2)', color='#52a5ce')
+    plt.bar(x + width/2, opt_diff, width, bottom=opt_o2, label='Opt (O0)', color='#52a5ce', alpha=0.4)
 
     # plot formatting
     plt.ylabel('Execution Time (seconds)', fontweight='bold')
