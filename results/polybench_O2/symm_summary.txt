@@ -1,0 +1,12 @@
+Benchmark         : linear-algebra/kernels/symm/symm
+─────────────────────────────────────────
+Static check counts:
+  Baseline checks : 25
+  Final checks    : 20
+  Removed checks  : 5
+  Reduction       : 20%
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 59.897s
+  Optimised       : 59.434s
+  Speedup         : 1.01x

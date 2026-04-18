@@ -1,0 +1,12 @@
+Benchmark         : linear-algebra/kernels/trisolv/trisolv
+─────────────────────────────────────────
+Static check counts:
+  Baseline checks : 109
+  Final checks    : 38
+  Removed checks  : 71
+  Reduction       : 65%
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 1.557s
+  Optimised       : 0.788s
+  Speedup         : 1.98x

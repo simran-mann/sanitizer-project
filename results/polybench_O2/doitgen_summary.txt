@@ -1,0 +1,12 @@
+Benchmark         : linear-algebra/kernels/doitgen/doitgen
+─────────────────────────────────────────
+Static check counts:
+  Baseline checks : 34
+  Final checks    : 30
+  Removed checks  : 4
+  Reduction       : 12%
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 2.398s
+  Optimised       : 1.669s
+  Speedup         : 1.44x

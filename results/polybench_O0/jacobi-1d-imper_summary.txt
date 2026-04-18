@@ -1,0 +1,12 @@
+Benchmark         : stencils/jacobi-1d-imper/jacobi-1d-imper
+─────────────────────────────────────────
+Static check counts:
+  Baseline checks : 91
+  Final checks    : 34
+  Removed checks  : 57
+  Reduction       : 63%
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.143s
+  Optimised       : 0.058s
+  Speedup         : 2.47x

@@ -1,0 +1,12 @@
+Benchmark         : stencils/adi/adi
+─────────────────────────────────────────
+Static check counts:
+  Baseline checks : 99
+  Final checks    : 68
+  Removed checks  : 31
+  Reduction       : 31%
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 4.079s
+  Optimised       : 3.719s
+  Speedup         : 1.10x

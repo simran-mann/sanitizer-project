@@ -1,0 +1,12 @@
+Benchmark         : linear-algebra/solvers/ludcmp/ludcmp
+─────────────────────────────────────────
+Static check counts:
+  Baseline checks : 51
+  Final checks    : 47
+  Removed checks  : 4
+  Reduction       : 8%
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 6.868s
+  Optimised       : 7.329s
+  Speedup         : 0.94x

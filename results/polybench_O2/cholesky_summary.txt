@@ -1,0 +1,12 @@
+Benchmark         : linear-algebra/kernels/cholesky/cholesky
+─────────────────────────────────────────
+Static check counts:
+  Baseline checks : 28
+  Final checks    : 27
+  Removed checks  : 1
+  Reduction       : 4%
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 1.193s
+  Optimised       : 1.146s
+  Speedup         : 1.04x

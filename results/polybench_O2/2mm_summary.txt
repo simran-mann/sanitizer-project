@@ -1,0 +1,12 @@
+Benchmark         : linear-algebra/kernels/2mm/2mm
+─────────────────────────────────────────
+Static check counts:
+  Baseline checks : 28
+  Final checks    : 21
+  Removed checks  : 7
+  Reduction       : 25%
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 65.760s
+  Optimised       : 65.930s
+  Speedup         : 1.00x

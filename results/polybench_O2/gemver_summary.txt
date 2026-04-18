@@ -1,0 +1,12 @@
+Benchmark         : linear-algebra/kernels/gemver/gemver
+─────────────────────────────────────────
+Static check counts:
+  Baseline checks : 75
+  Final checks    : 56
+  Removed checks  : 19
+  Reduction       : 25%
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 1.596s
+  Optimised       : 1.495s
+  Speedup         : 1.07x

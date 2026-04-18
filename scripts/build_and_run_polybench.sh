@@ -80,7 +80,7 @@ BUILD="${ROOT}/build"
 RESULTS="${ROOT}/results/polybench_${OPT_LEVEL}"
 RUNTIME_SRC="${ROOT}/runtime/check_access.c"
 [[ "$(uname)" == "Darwin" ]] && PLUGIN="${BUILD}/SanitizerPlugin.dylib" || PLUGIN="${BUILD}/SanitizerPlugin.so"
-mkdir -p "${BUILD}" "${RESULTS}"
+mkdir -p "${BUILD}" "${RESULTS}" "${BUILD}/polybench/${OPT_LEVEL}"
 
 echo ""
 echo "=== Building LLVM plugin ==="

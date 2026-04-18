@@ -1,0 +1,12 @@
+Benchmark         : stencils/fdtd-apml/fdtd-apml
+─────────────────────────────────────────
+Static check counts:
+  Baseline checks : 121
+  Final checks    : 83
+  Removed checks  : 38
+  Reduction       : 31%
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 3.244s
+  Optimised       : 2.889s
+  Speedup         : 1.12x

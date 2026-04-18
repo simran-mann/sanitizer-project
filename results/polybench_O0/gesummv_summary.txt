@@ -1,0 +1,12 @@
+Benchmark         : linear-algebra/kernels/gesummv/gesummv
+─────────────────────────────────────────
+Static check counts:
+  Baseline checks : 145
+  Final checks    : 54
+  Removed checks  : 91
+  Reduction       : 63%
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 3.445s
+  Optimised       : 1.799s
+  Speedup         : 1.91x

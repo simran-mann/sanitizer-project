@@ -1,0 +1,12 @@
+Benchmark         : linear-algebra/solvers/gramschmidt/gramschmidt
+─────────────────────────────────────────
+Static check counts:
+  Baseline checks : 232
+  Final checks    : 58
+  Removed checks  : 174
+  Reduction       : 75%
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 14.092s
+  Optimised       : 7.002s
+  Speedup         : 2.01x

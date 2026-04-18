@@ -1,0 +1,12 @@
+Benchmark         : stencils/fdtd-2d/fdtd-2d
+─────────────────────────────────────────
+Static check counts:
+  Baseline checks : 86
+  Final checks    : 70
+  Removed checks  : 16
+  Reduction       : 19%
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 1.819s
+  Optimised       : 1.779s
+  Speedup         : 1.02x

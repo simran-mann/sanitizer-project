@@ -1,0 +1,12 @@
+Benchmark         : linear-algebra/solvers/dynprog/dynprog
+─────────────────────────────────────────
+Static check counts:
+  Baseline checks : 24
+  Final checks    : 23
+  Removed checks  : 1
+  Reduction       : 4%
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 2.079s
+  Optimised       : 2.069s
+  Speedup         : 1.00x

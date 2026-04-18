@@ -1,0 +1,12 @@
+Benchmark         : linear-algebra/kernels/syr2k/syr2k
+─────────────────────────────────────────
+Static check counts:
+  Baseline checks : 169
+  Final checks    : 52
+  Removed checks  : 117
+  Reduction       : 69%
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 128.490s
+  Optimised       : 44.245s
+  Speedup         : 2.90x

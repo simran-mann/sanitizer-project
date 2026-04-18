@@ -1,0 +1,12 @@
+Benchmark         : linear-algebra/solvers/durbin/durbin
+─────────────────────────────────────────
+Static check counts:
+  Baseline checks : 205
+  Final checks    : 67
+  Removed checks  : 138
+  Reduction       : 67%
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 4.059s
+  Optimised       : 2.484s
+  Speedup         : 1.63x

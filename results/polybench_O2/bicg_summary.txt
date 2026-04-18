@@ -1,0 +1,12 @@
+Benchmark         : linear-algebra/kernels/bicg/bicg
+─────────────────────────────────────────
+Static check counts:
+  Baseline checks : 25
+  Final checks    : 17
+  Removed checks  : 8
+  Reduction       : 32%
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.845s
+  Optimised       : 0.587s
+  Speedup         : 1.44x

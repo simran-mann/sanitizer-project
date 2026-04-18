@@ -1,0 +1,12 @@
+Benchmark         : medley/floyd-warshall/floyd-warshall
+─────────────────────────────────────────
+Static check counts:
+  Baseline checks : 102
+  Final checks    : 31
+  Removed checks  : 71
+  Reduction       : 70%
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 95.029s
+  Optimised       : 33.530s
+  Speedup         : 2.83x

@@ -1,0 +1,12 @@
+Benchmark         : linear-algebra/kernels/mvt/mvt
+─────────────────────────────────────────
+Static check counts:
+  Baseline checks : 145
+  Final checks    : 48
+  Removed checks  : 97
+  Reduction       : 67%
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 4.249s
+  Optimised       : 2.148s
+  Speedup         : 1.98x

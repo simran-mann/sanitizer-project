@@ -1,0 +1,12 @@
+Benchmark         : datamining/correlation/correlation
+─────────────────────────────────────────
+Static check counts:
+  Baseline checks : 235
+  Final checks    : 69
+  Removed checks  : 166
+  Reduction       : 71%
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 57.404s
+  Optimised       : 32.794s
+  Speedup         : 1.75x

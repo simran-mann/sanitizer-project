@@ -1,0 +1,12 @@
+Benchmark         : linear-algebra/kernels/trmm/trmm
+─────────────────────────────────────────
+Static check counts:
+  Baseline checks : 106
+  Final checks    : 35
+  Removed checks  : 71
+  Reduction       : 67%
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 36.606s
+  Optimised       : 11.044s
+  Speedup         : 3.31x
