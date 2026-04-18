@@ -77,7 +77,7 @@ OPT=$(find_tool opt)
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 BUILD="${ROOT}/build"
-RESULTS="${ROOT}/results/polybench_${OPT_LEVEL}/"
+RESULTS="${ROOT}/results/polybench_${OPT_LEVEL}"
 RUNTIME_SRC="${ROOT}/runtime/check_access.c"
 [[ "$(uname)" == "Darwin" ]] && PLUGIN="${BUILD}/SanitizerPlugin.dylib" || PLUGIN="${BUILD}/SanitizerPlugin.so"
 mkdir -p "${BUILD}" "${RESULTS}"
@@ -102,17 +102,16 @@ min_time() {
     printf "%.3f" "${best:-0.000}"
 }
 
-count_checks() {
-    grep -c '@check_access' "$1" 2>/dev/null || echo 0
-}
+echo "PolyBench dir: ${POLY_DIR}"
+count_checks() { grep -c '@check_access' "$1" 2>/dev/null || echo 0; }
 
 TABLE_FILE="${RESULTS}/${SUMMARY_OUT}"
 HEADER=$(printf "%-24s %10s %10s %10s %10s %8s %8s %8s" \
     "Program" "Base(s)" "Opt(s)" "Speedup" "Checks" "Final" "Removed" "Reduction")
 SEP=$(printf '─%.0s' {1..100})
-# echo ""
-# echo "$HEADER"
-# echo "$SEP"
+echo ""
+echo "$HEADER"
+echo "$SEP"
 {
     echo "$HEADER"
     echo "$SEP"
@@ -130,7 +129,7 @@ if [[ "${USE_POLYBENCH}" -eq 1 ]]; then
     [[ -d "${POLY_DIR}" ]] || { echo "ERROR: PolyBench dir not found: ${POLY_DIR}" >&2; exit 1; }
     [[ -f "${POLY_UTIL}" ]] || { echo "ERROR: Missing ${POLY_UTIL}" >&2; exit 1; }
 
-    echo "PolyBench dir: ${POLY_DIR}"
+    # echo "PolyBench dir: ${POLY_DIR}"
 
     BENCHMARKS=(
         "datamining/correlation/correlation"
@@ -170,25 +169,35 @@ if [[ "${USE_POLYBENCH}" -eq 1 ]]; then
         BENCH_NAME="$(basename "${BENCH}")"
         BENCH_DIR="$(dirname "${SRC}")"
         # SAFE_NAME="$(echo "${BENCH}" | sed 's#/#__#g')"
-        SAFE_NAME="$(echo "${BENCH}" | sed 's#/#_#g')"
+        # SAFE_NAME="$(echo "${BENCH}" | sed 's#/#_#g')"
 
-        LL_PLAIN="${BUILD}/${SAFE_NAME}.ll"
-        LL_BASE="${RESULTS}/${SAFE_NAME}_baseline.ll"
-        LL_OPT="${RESULTS}/${SAFE_NAME}_opt.ll"
-        BIN_BASE="${BUILD}/${SAFE_NAME}_baseline"
-        BIN_OPT="${BUILD}/${SAFE_NAME}_opt"
-        STATS_BASE="${RESULTS}/${SAFE_NAME}_base_stats.txt"
-        STATS_OPT="${RESULTS}/${SAFE_NAME}_opt_stats.txt"
+        LL_PLAIN="${BUILD}/polybench/${OPT_LEVEL}/${BENCH_NAME}.ll"
+        LL_BASE="${RESULTS}/${BENCH_NAME}_baseline.ll"
+        LL_OPT="${RESULTS}/${BENCH_NAME}_opt.ll"
+        BIN_BASE="${BUILD}/polybench/${OPT_LEVEL}/${BENCH_NAME}_baseline"
+        BIN_OPT="${BUILD}/polybench/${OPT_LEVEL}/${BENCH_NAME}_opt"
+        STATS_BASE="${RESULTS}/${BENCH_NAME}_base_stats.txt"
+        STATS_OPT="${RESULTS}/${BENCH_NAME}_opt_stats.txt"
 
         [[ -f "${SRC}" ]] || { echo "WARNING: Missing source, skipping: ${SRC}" >&2; continue; }
 
-        echo "Running ${BENCH}..."
+        # echo "Running ${BENCH}..."
 
-        "${CLANG}" "-${OPT_LEVEL}" \
-            -include stdlib.h \
-            -I "${POLY_UTIL_DIR}" \
-            -I "${BENCH_DIR}" \
-            -S -emit-llvm "${SRC}" -o "${LL_PLAIN}"
+        if [[ "${OPT_LEVEL}" == "O0" ]]; then
+            "${CLANG}" -O0 -Xclang -disable-O0-optnone \
+                -include stdlib.h \
+                -I "${POLY_UTIL_DIR}" \
+                -I "${BENCH_DIR}" \
+                -S -emit-llvm "${SRC}" \
+                -o "${LL_PLAIN}"
+        else
+            "${CLANG}" "-${OPT_LEVEL}" \
+                -include stdlib.h \
+                -I "${POLY_UTIL_DIR}" \
+                -I "${BENCH_DIR}" \
+                -S -emit-llvm "${SRC}" \
+                -o "${LL_PLAIN}"
+        fi
 
         "${OPT}" -load-pass-plugin "${PLUGIN}" \
             -passes="function(instrument),sanitizer-stats" \
@@ -225,7 +234,7 @@ if [[ "${USE_POLYBENCH}" -eq 1 ]]; then
         echo "$ROW"
         echo "$ROW" >> "${TABLE_FILE}"
 
-        cat > "${RESULTS}/${SAFE_NAME}_summary.txt" <<EOF
+        cat > "${RESULTS}/${BENCH_NAME}_summary.txt" <<EOF
 Benchmark         : ${BENCH}
 ─────────────────────────────────────────
 Static check counts:
@@ -270,9 +279,9 @@ else
         T_BASE=$(min_time "${BIN_BASE}")
         T_OPT=$(min_time "${BIN_OPT}")
 
-        N_BASE=$(count_checks "${LL_BASE}")
-        N_OPT=$(count_checks "${LL_OPT}")
-        N_REM=$(( N_BASE - N_OPT ))
+        N_BASE="$(count_checks "${LL_BASE}" | tr -d '[:space:]')"
+        N_OPT="$(count_checks "${LL_OPT}" | tr -d '[:space:]')"
+        N_REM=$((N_BASE - N_OPT))
 
         REDUCTION="0%"
         [[ "${N_BASE}" -gt 0 ]] && REDUCTION="$(awk "BEGIN{printf \"%.0f%%\", 100*${N_REM}/${N_BASE}}")"
