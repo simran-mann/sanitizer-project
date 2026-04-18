@@ -130,7 +130,7 @@ PreservedAnalyses sanitizer::RedundantCheckPass::run(Function &F,FunctionAnalysi
     gChecksRemoved += removed;
 
 
-    errs() << "Removing rudundant calls in function " << F.getName()<< ", removed " << removed << checks.size() << " check(s)\n";
+    errs() << "Removing rudundant calls in function " << F.getName()<< ", removed " << removed << " of " << checks.size() << " check(s)\n";
 
     return removed > 0 ? PreservedAnalyses::none() : PreservedAnalyses::all();
 }
