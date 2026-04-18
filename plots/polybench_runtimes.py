@@ -55,7 +55,7 @@ def plot_polybench_dual_stacked(o0_path, o2_path, output_png):
     # plot formatting
     plt.ylabel('Execution Time (seconds)', fontweight='bold')
     plt.xlabel('Benchmarks', fontweight='bold')
-    plt.title('Polybench Runtimes: Baseline vs Optimized (Stacked O2/O0)', fontsize=14, fontweight='bold')
+    plt.title('Polybenched Runtimes across Sanitizers', fontsize=14, fontweight='bold')
     plt.xticks(x, programs, rotation=30, ha='right')
     
     plt.legend(loc='upper right', ncol=2)
