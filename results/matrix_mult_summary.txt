@@ -1,0 +1,12 @@
+Benchmark         : matrix_mult
+─────────────────────────────────────────
+Static check counts:
+  Baseline checks : 11
+  Final checks    : 9
+  Removed checks  : 2
+  Reduction       : 18%
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.113s
+  Optimised       : 0.072s
+  Speedup         : 1.57x

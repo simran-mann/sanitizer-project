@@ -1,0 +1,12 @@
+Benchmark         : convolution
+─────────────────────────────────────────
+Static check counts:
+  Baseline checks : 31
+  Final checks    : 30
+  Removed checks  : 1
+  Reduction       : 3%
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.016s
+  Optimised       : 0.011s
+  Speedup         : 1.45x

@@ -50,3 +50,13 @@ cd ..
 ./scripts/build_and_run_polybench.sh 'relative-path-to-polybench-3.1' O2
 ./scripts/build_and_run_polybench.sh 'relative-path-to-polybench-3.1' O0 "polybench_summary_table.txt."
 ```
+
+### If you wish to generate plots *(done after running the sanitizers)*
+```
+# only required once
+pip install pandas matplotlib
+
+# generate benchmarked plot across sanitizers 
+pwd
+python plots/runtimes_plot.py
+```

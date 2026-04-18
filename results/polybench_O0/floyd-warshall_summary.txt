@@ -7,6 +7,12 @@ Static check counts:
   Reduction       : 70%
 ─────────────────────────────────────────
 Runtime (minimum of 3 runs):
+<<<<<<< HEAD
   Baseline        : 95.029s
   Optimised       : 33.530s
   Speedup         : 2.83x
+=======
+  Baseline        : 33.552s
+  Optimised       : 7.685s
+  Speedup         : 4.37x
+>>>>>>> 7fe9056 (init plots)

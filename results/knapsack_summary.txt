@@ -1,0 +1,12 @@
+Benchmark         : knapsack
+─────────────────────────────────────────
+Static check counts:
+  Baseline checks : 10
+  Final checks    : 9
+  Removed checks  : 1
+  Reduction       : 10%
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.013s
+  Optimised       : 0.016s
+  Speedup         : 0.81x

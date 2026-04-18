@@ -1,0 +1,14 @@
+DEBUG PRINT::: lambda callback called with: instrument
+DEBUG PRINT::: lambda callback called with: remove-redundant
+debug print: visiting functoin mainwith # bbs=10
+Instrumenting function: main,  9 checks inserted
+Removing rudundant calls in function main, removed 19 check(s)
+
+========================================
+           Statistics           
+========================================
+  Total memory accesses : 9
+  Checks inserted       : 9
+  Checks removed        : 1
+  Final checks          : 8
+  Reduction             : 11%

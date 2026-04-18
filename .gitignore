@@ -7,3 +7,6 @@ build/
 *.bc
 scratch/
 sanrazor_state/
+polybench-3.1.tar.gz
+polybench-3.1
+build/polybench

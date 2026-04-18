@@ -2,6 +2,8 @@
 set -euo pipefail
 
 VER="${1:-}"
+O_LEVEL="${2:-O2}"
+
 find_tool() {
     local name="$1"
     if [[ -n "$VER" ]] && command -v "${name}-${VER}" &>/dev/null; then echo "${name}-${VER}"
@@ -44,7 +46,7 @@ count_checks() { grep -c '@check_access' "$1" 2>/dev/null || echo 0; }
 
 BENCHMARKS=(matrix_mult array_sum quicksort binary_search convolution knapsack)
 
-TABLE_FILE="${RESULTS}/table.txt"
+TABLE_FILE="${RESULTS}/table_${O_LEVEL}.txt"
 HEADER=$(printf "%-18s %10s %10s %10s %10s %8s %8s %8s" \
     "Program" "Base(s)" "Opt(s)" "Speedup" "Checks" "Final" "Removed" "Reduction")
 SEP=$(printf '─%.0s' {1..90})
@@ -62,7 +64,7 @@ for BENCH in "${BENCHMARKS[@]}"; do
     STATS_BASE="${RESULTS}/${BENCH}_base_stats.txt"
     STATS_OPT="${RESULTS}/${BENCH}_opt_stats.txt"
 
-    "${CLANG}" -O0 -Xclang -disable-O0-optnone -S -emit-llvm "${SRC}" -o "${LL_PLAIN}"
+    "${CLANG}" -"${O_LEVEL}" -Xclang -disable-O0-optnone -S -emit-llvm "${SRC}" -o "${LL_PLAIN}"
 
     "${OPT}" -load-pass-plugin "${PLUGIN}" \
         -passes="function(instrument),sanitizer-stats" \
@@ -72,8 +74,9 @@ for BENCH in "${BENCHMARKS[@]}"; do
         -passes="function(instrument,remove-redundant),sanitizer-stats" \
         -S "${LL_PLAIN}" -o "${LL_OPT}" 2>"${STATS_OPT}"
 
-    "${CLANG}" -O0 "${LL_BASE}" "${RUNTIME_SRC}" -o "${BIN_BASE}" -lm
-    "${CLANG}" -O0 "${LL_OPT}"  "${RUNTIME_SRC}" -o "${BIN_OPT}"  -lm
+    
+    "${CLANG}" -"${O_LEVEL}" "${LL_BASE}" "${RUNTIME_SRC}" -o "${BIN_BASE}" -lm
+    "${CLANG}" -"${O_LEVEL}" "${LL_OPT}"  "${RUNTIME_SRC}" -o "${BIN_OPT}"  -lm
 
     T_BASE=$(min_time "${BIN_BASE}")
     T_OPT=$(min_time "${BIN_OPT}")

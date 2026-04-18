@@ -1,0 +1,14 @@
+DEBUG PRINT::: lambda callback called with: instrument
+debug print: visiting functoin mainwith # bbs=10
+Instrumenting function: main,  9 checks inserted
+debug print: visiting functoin qsort_r_implwith # bbs=14
+Instrumenting function: qsort_r_impl,  19 checks inserted
+
+========================================
+           Statistics           
+========================================
+  Total memory accesses : 28
+  Checks inserted       : 28
+  Checks removed        : 0
+  Final checks          : 28
+  Reduction             : 0%
