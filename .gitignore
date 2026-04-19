@@ -1,5 +1,7 @@
 build/
-# results/
+results/local_bench/*/*
+!results/local_bench/*/*.txt
+!results/local_bench/*/*.csv
 *.o
 *.so
 *.out

@@ -1,0 +1,6 @@
+Benchmark,Baseline(s),ASan(s),ToolBase(s),ToolOpt(s),Speedup(x),Overhead(x),ASan_OH(x),Speedup_v_ASan(x)
+matrix_mult,0.36,0.92,3.51,1.27,2.76,3.53,2.56,0.72
+array_sum,0.30,0.47,1.27,0.46,2.76,1.53,1.57,1.02
+quicksort,0.53,0.53,1.91,0.73,2.62,1.38,1.00,0.73
+binary_search,0.91,0.93,2.32,0.95,2.44,1.04,1.02,0.98
+knapsack,0.05,0.10,0.24,0.10,2.40,2.00,2.00,1.00

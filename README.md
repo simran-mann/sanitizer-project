@@ -6,24 +6,31 @@ First you will need to initialize the course environment if you are working on C
 ```bash
 source  /usr/shared/CMPT/faculty/wsumner/base/env745/bin/activate
 ```
-
+### If you wish to run the the local benchmark suite you must:
 Ensure you are in the project root directory: `sanitizer-project` and run the following:
 
 ```
 mkdir build && cd build
 cmake .. -DLLVM_DIR=$(llvm-config --cmakedir)
 cd ..
-./scripts/build_and_run.sh
+./scripts/build_and_run.sh 
+```
+This will run the local benchmarks with clang optimization level O0, if you wish to run with a different optimization level it can be included as a command line argument
+```
+./scripts/build_and_run.sh O2
 ```
 
-The reuslts will be saved to the `results` folder:
+The results will be saved to the `results` folder:
+- `results/local_bench/<opt_level>/check_access_summary.txt`- check access summary (static and dynamic checks)
+- `results/local_bench/<opt_level>/runtime_summary.txt`     - runtimes for each benchmark plus some calculated stats
 
-- `results/table.txt` - summary table
-- `results/<bench>_summary.txt` - breakdown for each benchmark
-- `results/<bench>_baseline.ll` - instrumented IR for each benchmakr 
-- `results/<bench>_opt.ll` — optimized IR for each benchmak
+The executables for each benchmark will be saved to the `build` folder:
+- `build/local_bench/<opt_level>/<benchmark>_{baseline,asan,tool_base,tool_opt}`
 
-### If you wish to run the the Polyhedral Benchmark suite you must:
+The instrumented IRs for each benchmark will also be saved to the `results` folder:
+- `results/local_bench/<opt_level>/<benchmark>/<benchmark>_{baseline,too_base,tool_opt}.ll`
+
+### If you wish to run the the polyhedral benchmark suite you must:
 - download the benchmark suite 
 ```
 wget https://www.cs.colostate.edu/~pouchet/software/polybench/download/polybench-3.1.tar.gz
@@ -33,22 +40,30 @@ wget https://www.cs.colostate.edu/~pouchet/software/polybench/download/polybench
 tar -xvf polybench-3.1.tar.gz
 ```
 - take note of the relative path to the 'polybench-3.1' directory with respect to the project root directory
-- ensure you are in the project root directory: `sanitizer-project` and run the following (several options are given below):
-    - when running the script you must include the relative path to the polybench-3.1 directory as an argument
-    - optional arguments:
-        - clang optimization levels, acceptable input: O0, O1, O2 or O3
-            - default value: O0
-        - summary table file name: "polybench_summary_table.txt"
-            - default value: "summary_table.txt"
+- ensure you are in the project root directory: `sanitizer-project` and run the following 
 ```
 mkdir build && cd build
 cmake .. -DLLVM_DIR=$(llvm-config --cmakedir)
 cd ..
 
 # examples of command line arguments to run the script:
-./scripts/build_and_run_polybench.sh 'relative-path-to-polybench-3.1'
-./scripts/build_and_run_polybench.sh 'relative-path-to-polybench-3.1' O2
-./scripts/build_and_run_polybench.sh 'relative-path-to-polybench-3.1' O0 "polybench_summary_table.txt."
+./scripts/build_and_run.sh --polybench 'relative/path/to/polybench-3.1'
+./scripts/build_and_run.sh --polybench 'relative/path/to/polybench-3.1' O2
+```
+
+The results will be saved to the `results` folder:
+- `results/poly_bench/<opt_level>/check_access_summary.txt`- check access summary (static and dynamic checks)
+- `results/poly_bench/<opt_level>/runtime_summary.txt`     - runtimes for each benchmark plus some calculated stats
+
+The executables for each benchmark will be saved to the `build` folder:
+- `build/poly_bench/<opt_level>/<benchmark>_{baseline,asan,tool_base,tool_opt}`
+
+The instrumented IRs for each benchmark will also be saved to the `results` folder:
+- `results/poly_bench/<opt_level>/<benchmark>/<benchmark>_{baseline,too_base,tool_opt}.ll`
+
+To see more information about the benchmark suite visit:
+```
+https://www.cs.colostate.edu/~pouchet/software/polybench/
 ```
 
 ### If you wish to generate plots *(done after running the sanitizers)*
