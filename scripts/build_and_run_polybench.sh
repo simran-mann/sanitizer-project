@@ -77,7 +77,12 @@ OPT=$(find_tool opt)
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 BUILD="${ROOT}/build"
-RESULTS="${ROOT}/results/polybench_${OPT_LEVEL}"
+# RESULTS="${ROOT}/results/polybench_${OPT_LEVEL}"
+if [[ "${USE_POLYBENCH}" -eq 1 ]]; then
+    RESULTS="${ROOT}/results/polybench_${OPT_LEVEL}"
+else
+    RESULTS="${ROOT}/results/custom_${OPT_LEVEL}"
+fi
 RUNTIME_SRC="${ROOT}/runtime/check_access.c"
 [[ "$(uname)" == "Darwin" ]] && PLUGIN="${BUILD}/SanitizerPlugin.dylib" || PLUGIN="${BUILD}/SanitizerPlugin.so"
 mkdir -p "${BUILD}" "${RESULTS}" "${BUILD}/polybench/${OPT_LEVEL}"
@@ -105,10 +110,25 @@ min_time() {
 echo "PolyBench dir: ${POLY_DIR}"
 count_checks() { grep -c '@check_access' "$1" 2>/dev/null || echo 0; }
 
+get_dynamic_count() {
+    local exe="$1"
+    local tmpfile
+    tmpfile=$(mktemp)
+    "$exe" > /dev/null 2>"$tmpfile" || true
+    grep -o '[0-9]*' "$tmpfile" | tail -1
+    rm -f "$tmpfile"
+}
+
 TABLE_FILE="${RESULTS}/${SUMMARY_OUT}"
-HEADER=$(printf "%-24s %10s %10s %10s %10s %8s %8s %8s" \
-    "Program" "Base(s)" "Opt(s)" "Speedup" "Checks" "Final" "Removed" "Reduction")
-SEP=$(printf '─%.0s' {1..100})
+# HEADER=$(printf "%-24s %10s %10s %10s %10s %8s %8s %8s" \
+#     "Program" "Base(s)" "Opt(s)" "Speedup" "Static checks for base" "Static checks for opt" "Static checks removed" "Reduction in static checks%" "Dynamic checks for base" "Dynamic checks for opt" "Dynamic checks removed" "Reduction in dynamic checks%")
+
+HEADER=$(printf "%-18s %9s %9s %9s %8s %8s %8s %8s %14s %14s %14s %8s"  \
+    "Program" "Base(s)" "Opt(s)" "Speedup" \
+    "S-Base" "S-Opt" "S-Rem" "S-Red%" \
+    "D-Base" "D-Opt" "D-Rem" "D-Red%")
+
+SEP=$(printf '─%.0s' {1..170})
 echo ""
 echo "$HEADER"
 echo "$SEP"
@@ -228,9 +248,25 @@ if [[ "${USE_POLYBENCH}" -eq 1 ]]; then
         [[ "${N_BASE}" -gt 0 ]] && REDUCTION="$(awk "BEGIN{printf \"%.0f%%\", 100*${N_REM}/${N_BASE}}")"
         SPEEDUP="$(awk "BEGIN{ if (${T_OPT}>0) printf \"%.2fx\", ${T_BASE}/${T_OPT}; else print \"N/A\" }")"
 
-        ROW=$(printf "%-24s %10s %10s %10s %10d %8d %8d %8s" \
+        # ROW=$(printf "%-24s %10s %10s %10s %10d %8d %8d %8s" \
+        #     "${BENCH_NAME}" "${T_BASE}s" "${T_OPT}s" "${SPEEDUP}" \
+        #     "${N_BASE}" "${N_OPT}" "${N_REM}" "${REDUCTION}")
+
+        #count dynamic checks 
+        DYN_BASE=$(get_dynamic_count "${BIN_BASE}")
+        DYN_OPT=$(get_dynamic_count "${BIN_OPT}")
+        DYN_BASE="${DYN_BASE:-0}"
+        DYN_OPT="${DYN_OPT:-0}"
+        DYN_REM=$(( DYN_BASE - DYN_OPT ))
+        DYN_REDUCTION="0%"
+        [[ "${DYN_BASE}" -gt 0 ]] && \
+            DYN_REDUCTION="$(awk "BEGIN{printf \"%.0f%%\", 100*${DYN_REM}/${DYN_BASE}}")"
+
+
+        ROW=$(printf "%-18s %9s %9s %9s %8d %8d %8d %8s %14d %14d %14d %8s"  \
             "${BENCH_NAME}" "${T_BASE}s" "${T_OPT}s" "${SPEEDUP}" \
-            "${N_BASE}" "${N_OPT}" "${N_REM}" "${REDUCTION}")
+            "${N_BASE}" "${N_OPT}" "${N_REM}" "${REDUCTION}" \
+            "${DYN_BASE}" "${DYN_OPT}" "${DYN_REM}" "${DYN_REDUCTION}")
         echo "$ROW"
         echo "$ROW" >> "${TABLE_FILE}"
 
@@ -242,6 +278,12 @@ Static check counts:
   Final checks    : ${N_OPT}
   Removed checks  : ${N_REM}
   Reduction       : ${REDUCTION}
+─────────────────────────────────────────
+Dynamic check counts (actual executions):
+  Baseline execs  : ${DYN_BASE}
+  Final execs     : ${DYN_OPT}
+  Saved execs     : ${DYN_REM}
+  Dyn reduction   : ${DYN_REDUCTION}
 ─────────────────────────────────────────
 Runtime (minimum of 3 runs):
   Baseline        : ${T_BASE}s
@@ -263,7 +305,12 @@ else
         STATS_BASE="${RESULTS}/${BENCH}_base_stats.txt"
         STATS_OPT="${RESULTS}/${BENCH}_opt_stats.txt"
 
-        "${CLANG}" "-${OPT_LEVEL}" -S -emit-llvm "${SRC}" -o "${LL_PLAIN}"
+        # "${CLANG}" "-${OPT_LEVEL}" -S -emit-llvm "${SRC}" -o "${LL_PLAIN}"
+        if [[ "${OPT_LEVEL}" == "O0" ]]; then
+            "${CLANG}" -O0 -Xclang -disable-O0-optnone -S -emit-llvm "${SRC}" -o "${LL_PLAIN}"
+        else
+            "${CLANG}" "-${OPT_LEVEL}" -S -emit-llvm "${SRC}" -o "${LL_PLAIN}"
+        fi
 
         "${OPT}" -load-pass-plugin "${PLUGIN}" \
             -passes="function(instrument),sanitizer-stats" \
@@ -287,20 +334,40 @@ else
         [[ "${N_BASE}" -gt 0 ]] && REDUCTION="$(awk "BEGIN{printf \"%.0f%%\", 100*${N_REM}/${N_BASE}}")"
         SPEEDUP="$(awk "BEGIN{ if (${T_OPT}>0) printf \"%.2fx\", ${T_BASE}/${T_OPT}; else print \"N/A\" }")"
 
-        ROW=$(printf "%-24s %10s %10s %10s %10d %8d %8d %8s" \
+        #count dynamic checks
+        DYN_BASE=$(get_dynamic_count "${BIN_BASE}")
+        DYN_OPT=$(get_dynamic_count "${BIN_OPT}")
+        DYN_BASE="${DYN_BASE:-0}"
+        DYN_OPT="${DYN_OPT:-0}"
+        DYN_REM=$(( DYN_BASE - DYN_OPT ))
+        DYN_REDUCTION="0%"
+        [[ "${DYN_BASE}" -gt 0 ]] && \
+            DYN_REDUCTION="$(awk "BEGIN{printf \"%.0f%%\", 100*${DYN_REM}/${DYN_BASE}}")"
+
+        # ROW=$(printf "%-24s %10s %10s %10s %10d %8d %8d %8s" \
+        #     "${BENCH}" "${T_BASE}s" "${T_OPT}s" "${SPEEDUP}" \
+        #     "${N_BASE}" "${N_OPT}" "${N_REM}" "${REDUCTION}")
+        ROW=$(printf "%-18s %9s %9s %9s %8d %8d %8d %8s %14d %14d %14d %8s"  \
             "${BENCH}" "${T_BASE}s" "${T_OPT}s" "${SPEEDUP}" \
-            "${N_BASE}" "${N_OPT}" "${N_REM}" "${REDUCTION}")
+            "${N_BASE}" "${N_OPT}" "${N_REM}" "${REDUCTION}" \
+            "${DYN_BASE}" "${DYN_OPT}" "${DYN_REM}" "${DYN_REDUCTION}")
         echo "$ROW"
         echo "$ROW" >> "${TABLE_FILE}"
 
-        cat > "${RESULTS}/${BENCH}_summary.txt" <<EOF
+cat > "${RESULTS}/${BENCH}_summary.txt" <<EOF
 Benchmark         : ${BENCH}
 ─────────────────────────────────────────
-Static check counts:
+Static check counts (IR call sites):
   Baseline checks : ${N_BASE}
   Final checks    : ${N_OPT}
   Removed checks  : ${N_REM}
   Reduction       : ${REDUCTION}
+─────────────────────────────────────────
+Dynamic check counts (actual executions):
+  Baseline execs  : ${DYN_BASE}
+  Final execs     : ${DYN_OPT}
+  Saved execs     : ${DYN_REM}
+  Dyn reduction   : ${DYN_REDUCTION}
 ─────────────────────────────────────────
 Runtime (minimum of 3 runs):
   Baseline        : ${T_BASE}s
