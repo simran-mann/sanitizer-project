@@ -60,7 +60,7 @@ def plot_overheads(tool_path, sz_path, output_png):
     # plot the overhead bars 
     plt.bar(x - width, asan_oh, width, label='ASan', color='#e4568b')
     plt.bar(x, tool_oh, width, label='ToolOpt', color='#24e5d2')
-    plt.bar(x + width, sz_oh, width, label='SanRazor', color='#2584a7')
+    plt.bar(x + width, sz_oh, width, label='SanRazor Opt', color='#2584a7')
 
     # Baseline reference line
     plt.axhline(y=1.0, color='black', linestyle='--', alpha=0.8, label='Base (No Tool)')
