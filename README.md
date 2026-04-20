@@ -68,10 +68,24 @@ https://www.cs.colostate.edu/~pouchet/software/polybench/
 
 ### If you wish to generate plots *(done after running the sanitizers)*
 ```
-# only required once
+# initial setup 
 pip install pandas matplotlib
 
-# generate benchmarked plot across sanitizers 
 pwd
-python plots/runtimes_plot.py
+```
+```
+# Plot Sanitizer Overhead across Local Benchmarks
+python plots/local_overhead.py
+
+# Plot Sanitizer Runtimes across Local Benchmarks
+plots/local_runtimes.py
+
+# Plot Check Reductions across Local Benchmarks
+plots/local_stat_vs_dyn_checks.py
+
+# Plot Average Sanitizer Runtimes across PolyBench Domains
+plots/polybench_avg_runtimes.py 
+
+# Plot Average Check Reductions across PolyBench Domains
+plots/polybench_stat_vs_dyn_checks.py
 ```

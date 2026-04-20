@@ -14,9 +14,6 @@ GROUPS = {
 
 def parse_runtimes(file_path):
     results = {}
-    if not os.path.exists(file_path):
-        print(f"Warning: {file_path} not found.")
-        return results
 
     with open(file_path, 'r', encoding='utf-8') as f:
         for line in f:
