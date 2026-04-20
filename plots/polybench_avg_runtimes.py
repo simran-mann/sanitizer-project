@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 
-# Define the PolyBench groups for averaging
+# define the PolyBench groups for averaging
 GROUPS = {
     'Datamining': ['correlation', 'covariance'],
     'LA Kernels (BLAS)': ['2mm', '3mm', 'atax', 'bicg', 'doitgen', 'gemm', 'gemver', 
@@ -12,95 +12,77 @@ GROUPS = {
     'Stencils': ['adi', 'fdtd-2d', 'fdtd-apml', 'jacobi-1d-imper', 'jacobi-2d-imper', 'seidel-2d']
 }
 
-def parse_reduction_data(check_path):
+def parse_runtimes(file_path):
+    results = {}
+    if not os.path.exists(file_path):
+        print(f"Warning: {file_path} not found.")
+        return results
 
-    raw_results = {}
-    if os.path.exists(check_path):
-        with open(check_path, 'r', encoding='utf-8') as f:
-            for line in f:
-                # Skip headers and separators
-                if any(x in line for x in ['Benchmark', '─', 'S-Base']) or not line.strip():
-                    continue
-                
-                parts = line.split()
-                if len(parts) < 9: continue
-                
-                prog = parts[0]
-                try:
-                    # clean the % sign and convert to float
-                    s_red = float(parts[4].replace('%', ''))
-                    d_red = float(parts[8].replace('%', ''))
-                    
-                    raw_results[prog] = {
-                        'static_red': s_red,
-                        'dynamic_red': d_red
-                    }
-                except ValueError: continue
-    else:
-        print(f"Warning: Check summary path not found: {check_path}")
-        return {}
-
-    # average the data by group
-    group_results = {}
-    for group_name, members in GROUPS.items():
-        s_list = [raw_results[m]['static_red'] for m in members if m in raw_results]
-        d_list = [raw_results[m]['dynamic_red'] for m in members if m in raw_results]
-        
-        if s_list:
-            group_results[group_name] = {
-                'static_red': np.mean(s_list),
-                'dynamic_red': np.mean(d_list)
-            }
+    with open(file_path, 'r', encoding='utf-8') as f:
+        for line in f:
+            # skip headers, decorators, and empty lines
+            if any(x in line for x in ['Benchmark', 'Program', '─', '───']) or not line.strip():
+                continue
             
-    return group_results
+            parts = line.split()
+            if len(parts) < 5:
+                continue
 
-def plot_reduction(check_path, output_png):
-    data = parse_reduction_data(check_path)
-    # get the category names
-    stats = list(data.keys())
+            prog = parts[0]
+            results[prog] = {
+                'Base':     float(parts[1].replace('s', '')),
+                'ASan':     float(parts[2].replace('s', '')),
+                'ToolBase': float(parts[3].replace('s', '')),
+                'ToolOpt':  float(parts[4].replace('s', ''))
+            }
+    
+    return results
 
-    # get static and dynamic averaged values 
-    s_vals = [data[s]['static_red'] for s in stats]
-    d_vals = [data[s]['dynamic_red'] for s in stats]
+def plot_all_tools_avg(tool_file, output_png):
+    # parse the raw data
+    tool_raw = parse_runtimes(tool_file)
 
-    # plot figure size 
-    x = np.arange(len(stats))
-    width = 0.35
-    plt.figure(figsize=(12, 7))
+    # compute average runtimes by group
+    group_stats = []
+    for group_name, members in GROUPS.items():
+        # filter for benchmarks actually present in the file
+        valid_benchmarks = [m for m in members if m in tool_raw]
+        
+        if valid_benchmarks:
+            group_stats.append({
+                'name': group_name,
+                'Base':     np.mean([tool_raw[m]['Base']     for m in valid_benchmarks]),
+                'ASan':     np.mean([tool_raw[m]['ASan']     for m in valid_benchmarks]),
+                'ToolBase': np.mean([tool_raw[m]['ToolBase'] for m in valid_benchmarks]),
+                'ToolOpt':  np.mean([tool_raw[m]['ToolOpt']  for m in valid_benchmarks])
+            })
 
-    # plot bars 
-    stat = plt.bar(x - width/2, s_vals, width, label='Static', color='#a1a1f7')
-    dyn = plt.bar(x + width/2, d_vals, width, label='Dynamic', color='#f7b557')
+    # setup plot
+    names = [s['name'] for s in group_stats]
+    x = np.arange(len(names))
+    width = 0.18 
+
+    plt.figure(figsize=(14, 8))
+
+    # plot bars
+    plt.bar(x - 1.5*width, [s['Base']     for s in group_stats], width, label='Baseline', color='#95a5a6')
+    plt.bar(x - 0.5*width, [s['ASan']     for s in group_stats], width, label='ASan',     color='#e4568b')
+    plt.bar(x + 0.5*width, [s['ToolBase'] for s in group_stats], width, label='ToolBase', color='#ffcb77')
+    plt.bar(x + 1.5*width, [s['ToolOpt']  for s in group_stats], width, label='ToolOpt',  color='#24e5d2')
 
     # formatting
-    plt.title('Average Check Reductions across Polybenched Domains', fontweight='bold', fontsize=15, pad=20)
-    plt.ylabel('Average Reduction (%)', fontweight='bold')
-    plt.xlabel('Polybench Domains', fontweight='bold')
-    plt.xticks(x, stats, rotation=15)
-    plt.ylim(0, 40) 
+    plt.title('Average Sanitizer Runtimes across PolyBench Domains', fontweight='bold', fontsize=16, pad=20)
+    plt.ylabel('Average Runtime (seconds)', fontweight='bold')
+    plt.xlabel('PolyBench Domains', fontweight='bold')
+    plt.xticks(x, names, rotation=15)
     plt.legend()
-    plt.grid(axis='y', linestyle=':', alpha=0.7)
-
-    # add text labels on top of bars
-    def autolabel(rects):
-        for rect in rects:
-            height = rect.get_height()
-            plt.annotate(f'{height:.1f}%',
-                        xy=(rect.get_x() + rect.get_width() / 2, height),
-                        xytext=(0, 3), 
-                        textcoords="offset points",
-                        ha='center', va='bottom', fontsize=9, fontweight='bold')
-
-    autolabel(stat)
-    autolabel(dyn)
-
+    plt.grid(axis='y', linestyle='--', alpha=0.3)
+    
     plt.tight_layout()
-    os.makedirs(os.path.dirname(output_png), exist_ok=True)
     plt.savefig(output_png, dpi=300)
-    print(f"Grouped average graph saved to: {output_png}")
 
-# call to plot averaged static and dynamic reductions 
-plot_reduction(
+# call function to plot runtimes
+plot_all_tools_avg(
     "results/polybench/O2/runtime_summary.txt", 
     "plots/imgs/poly_avg_runtimes.png"
 )

@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 
-# Define the PolyBench groups for averaging
+# define the polybench groups for averaging
 GROUPS = {
     'Datamining': ['correlation', 'covariance'],
     'LA Kernels (BLAS)': ['2mm', '3mm', 'atax', 'bicg', 'doitgen', 'gemm', 'gemver', 
@@ -73,9 +73,9 @@ def plot_reduction(check_path, output_png):
     dyn = plt.bar(x + width/2, d_vals, width, label='Dynamic', color='#f7b557')
 
     # formatting
-    plt.title('Average Check Reductions across Polybenched Domains', fontweight='bold', fontsize=15, pad=20)
+    plt.title('Average Check Reductions across PolyBench Domains', fontweight='bold', fontsize=15, pad=20)
     plt.ylabel('Average Reduction (%)', fontweight='bold')
-    plt.xlabel('Polybench Domains', fontweight='bold')
+    plt.xlabel('PolyBench Domains', fontweight='bold')
     plt.xticks(x, stats, rotation=15)
     plt.ylim(0, 40) 
     plt.legend()

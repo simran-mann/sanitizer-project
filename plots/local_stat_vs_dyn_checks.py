@@ -3,10 +3,7 @@ import numpy as np
 import os
 
 def parse_reduction_data(check_path):
-    """
-    Parses the check_access_summary.txt table.
-    Format: Benchmark S-Base S-Opt S-Rem S-Red% D-Base D-Opt D-Rem D-Red%
-    """
+
     results = {}
     if os.path.exists(check_path):
         with open(check_path, 'r', encoding='utf-8') as f:
