@@ -79,5 +79,5 @@ def plot_all_tools(tool_file, sz_file, output_png):
 plot_all_tools(
     "results/local_bench/O2/runtime_summary.txt", 
     "sanrazor-results/L2/results/table.txt", 
-    "plots/local_runtimes_plot.png"
+    "plots/imgs/local_runtimes_plot.png"
 )

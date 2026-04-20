@@ -80,5 +80,5 @@ def plot_reduction(check_path, output_png):
 # call to plot static and dynamic reductions 
 plot_reduction(
     "results/local_bench/O2/check_access_summary.txt", 
-    "plots/local_stat_dyn_checks.png"
+    "plots/imgs/local_stat_dyn_checks.png"
 )

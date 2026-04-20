@@ -81,5 +81,5 @@ def plot_overheads(tool_path, sz_path, output_png):
 plot_overheads(
     "results/local_bench/O2/runtime_summary.txt", 
     "sanrazor-results/L2/results/table.txt", 
-    "plots/local_overhead_plot.png"
+    "plots/imgs/local_overhead_plot.png"
 )
