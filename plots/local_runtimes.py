@@ -64,7 +64,7 @@ def plot_all_tools(tool_file, sz_file, output_png):
     # Formatting
     plt.ylabel('Execution Time (seconds)', fontweight='bold')
     plt.xlabel('Local Benchmarks', fontweight='bold')
-    plt.title('Local Benchmarked Runtimes across Sanitizers', fontsize=14, fontweight='bold')
+    plt.title('Sanitizer Runtimes across Local Benchmarks', fontsize=14, fontweight='bold')
     plt.xticks(x, stats, rotation=25, ha='right')
     
     plt.legend()

@@ -63,10 +63,10 @@ def plot_overheads(tool_path, sz_path, output_png):
     plt.bar(x + width, sz_oh, width, label='SanRazor', color='#2584a7')
 
     # Baseline reference line
-    plt.axhline(y=1.0, color='black', linestyle='--', alpha=0.8, label='Baseline (No Tool)')
+    plt.axhline(y=1.0, color='black', linestyle='--', alpha=0.8, label='Base (No Tool)')
 
     # Labels and Titles
-    plt.title('Local Benchmarked Overhead across Sanitizers', fontweight='bold', fontsize=14)
+    plt.title('Sanitizer Overhead across Local Benchmarks', fontweight='bold', fontsize=14)
     plt.ylabel('Slowdown Factor (x)', fontweight='bold')
     plt.xlabel('Local Benchmarks', fontweight='bold')
     plt.xticks(x, programs, rotation=25)
