@@ -1,0 +1,38 @@
+Benchmark         : doitgen
+─────────────────────────────────────────
+Executables:
+  Baseline        : /home/mga113/sanitizer-project/build/polybench/O0/doitgen_baseline
+  ASan            : /home/mga113/sanitizer-project/build/polybench/O0/doitgen_asan
+  Tool baseline   : /home/mga113/sanitizer-project/build/polybench/O0/doitgen_tool_base
+  Tool optimized  : /home/mga113/sanitizer-project/build/polybench/O0/doitgen_tool_opt
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.50s
+  ASan            : 1.02s
+  Tool baseline   : 8.12s
+  Tool optimized  : 1.36s
+─────────────────────────────────────────
+Runtime comparisons:
+  Speedup         : 5.97
+  Overhead        : 2.72
+  ASan_OH         : 2.04
+  Speedup_v_ASan  : 0.75
+─────────────────────────────────────────
+Static check counts:
+  Checks          : 170
+  Final           : 49
+  Removed         : 121
+  Reduction       : 71
+─────────────────────────────────────────
+Dynamic check counts (actual executions):
+  Baseline execs  : 6256265900
+  Final execs     : 1084277142
+  Saved execs     : 5171988758
+  Dyn reduction   : 83
+─────────────────────────────────────────
+IR / stats files:
+  Baseline IR     : /home/mga113/sanitizer-project/results/polybench/O0/doitgen/doitgen_baseline.ll
+  ToolBase IR     : /home/mga113/sanitizer-project/results/polybench/O0/doitgen/doitgen_tool_base.ll
+  ToolOpt IR      : /home/mga113/sanitizer-project/results/polybench/O0/doitgen/doitgen_tool_opt.ll
+  ToolBase stats  : /home/mga113/sanitizer-project/results/polybench/O0/doitgen/check_base_stats.txt
+  ToolOpt stats   : /home/mga113/sanitizer-project/results/polybench/O0/doitgen/check_opt_stats.txt

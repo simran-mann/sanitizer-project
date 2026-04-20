@@ -1,0 +1,38 @@
+Benchmark         : seidel-2d
+─────────────────────────────────────────
+Executables:
+  Baseline        : /home/mga113/sanitizer-project/build/polybench/O0/seidel-2d_baseline
+  ASan            : /home/mga113/sanitizer-project/build/polybench/O0/seidel-2d_asan
+  Tool baseline   : /home/mga113/sanitizer-project/build/polybench/O0/seidel-2d_tool_base
+  Tool optimized  : /home/mga113/sanitizer-project/build/polybench/O0/seidel-2d_tool_opt
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.13s
+  ASan            : 0.27s
+  Tool baseline   : 1.19s
+  Tool optimized  : 0.27s
+─────────────────────────────────────────
+Runtime comparisons:
+  Speedup         : 4.41
+  Overhead        : 2.08
+  ASan_OH         : 2.08
+  Speedup_v_ASan  : 1.00
+─────────────────────────────────────────
+Static check counts:
+  Checks          : 117
+  Final           : 36
+  Removed         : 81
+  Reduction       : 69
+─────────────────────────────────────────
+Dynamic check counts (actual executions):
+  Baseline execs  : 887630404
+  Final execs     : 200221793
+  Saved execs     : 687408611
+  Dyn reduction   : 77
+─────────────────────────────────────────
+IR / stats files:
+  Baseline IR     : /home/mga113/sanitizer-project/results/polybench/O0/seidel-2d/seidel-2d_baseline.ll
+  ToolBase IR     : /home/mga113/sanitizer-project/results/polybench/O0/seidel-2d/seidel-2d_tool_base.ll
+  ToolOpt IR      : /home/mga113/sanitizer-project/results/polybench/O0/seidel-2d/seidel-2d_tool_opt.ll
+  ToolBase stats  : /home/mga113/sanitizer-project/results/polybench/O0/seidel-2d/check_base_stats.txt
+  ToolOpt stats   : /home/mga113/sanitizer-project/results/polybench/O0/seidel-2d/check_opt_stats.txt

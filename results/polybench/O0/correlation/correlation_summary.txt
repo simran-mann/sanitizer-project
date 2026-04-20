@@ -1,0 +1,38 @@
+Benchmark         : correlation
+─────────────────────────────────────────
+Executables:
+  Baseline        : /home/mga113/sanitizer-project/build/polybench/O0/correlation_baseline
+  ASan            : /home/mga113/sanitizer-project/build/polybench/O0/correlation_asan
+  Tool baseline   : /home/mga113/sanitizer-project/build/polybench/O0/correlation_tool_base
+  Tool optimized  : /home/mga113/sanitizer-project/build/polybench/O0/correlation_tool_opt
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.87s
+  ASan            : 1.61s
+  Tool baseline   : 11.01s
+  Tool optimized  : 1.94s
+─────────────────────────────────────────
+Runtime comparisons:
+  Speedup         : 5.68
+  Overhead        : 2.23
+  ASan_OH         : 1.85
+  Speedup_v_ASan  : 0.83
+─────────────────────────────────────────
+Static check counts:
+  Checks          : 235
+  Final           : 69
+  Removed         : 166
+  Reduction       : 71
+─────────────────────────────────────────
+Dynamic check counts (actual executions):
+  Baseline execs  : 8566062542
+  Final execs     : 1512012525
+  Saved execs     : 7054050017
+  Dyn reduction   : 82
+─────────────────────────────────────────
+IR / stats files:
+  Baseline IR     : /home/mga113/sanitizer-project/results/polybench/O0/correlation/correlation_baseline.ll
+  ToolBase IR     : /home/mga113/sanitizer-project/results/polybench/O0/correlation/correlation_tool_base.ll
+  ToolOpt IR      : /home/mga113/sanitizer-project/results/polybench/O0/correlation/correlation_tool_opt.ll
+  ToolBase stats  : /home/mga113/sanitizer-project/results/polybench/O0/correlation/check_base_stats.txt
+  ToolOpt stats   : /home/mga113/sanitizer-project/results/polybench/O0/correlation/check_opt_stats.txt

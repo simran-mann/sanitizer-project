@@ -1,0 +1,38 @@
+Benchmark         : adi
+─────────────────────────────────────────
+Executables:
+  Baseline        : /home/mga113/sanitizer-project/build/polybench/O2/adi_baseline
+  ASan            : /home/mga113/sanitizer-project/build/polybench/O2/adi_asan
+  Tool baseline   : /home/mga113/sanitizer-project/build/polybench/O2/adi_tool_base
+  Tool optimized  : /home/mga113/sanitizer-project/build/polybench/O2/adi_tool_opt
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.35s
+  ASan            : 0.36s
+  Tool baseline   : 1.27s
+  Tool optimized  : 0.89s
+─────────────────────────────────────────
+Runtime comparisons:
+  Speedup         : 1.43
+  Overhead        : 2.54
+  ASan_OH         : 1.03
+  Speedup_v_ASan  : 0.40
+─────────────────────────────────────────
+Static check counts:
+  Checks          : 99
+  Final           : 68
+  Removed         : 31
+  Reduction       : 31
+─────────────────────────────────────────
+Dynamic check counts (actual executions):
+  Baseline execs  : 944369664
+  Final execs     : 603915264
+  Saved execs     : 340454400
+  Dyn reduction   : 36
+─────────────────────────────────────────
+IR / stats files:
+  Baseline IR     : /home/mga113/sanitizer-project/results/polybench/O2/adi/adi_baseline.ll
+  ToolBase IR     : /home/mga113/sanitizer-project/results/polybench/O2/adi/adi_tool_base.ll
+  ToolOpt IR      : /home/mga113/sanitizer-project/results/polybench/O2/adi/adi_tool_opt.ll
+  ToolBase stats  : /home/mga113/sanitizer-project/results/polybench/O2/adi/check_base_stats.txt
+  ToolOpt stats   : /home/mga113/sanitizer-project/results/polybench/O2/adi/check_opt_stats.txt

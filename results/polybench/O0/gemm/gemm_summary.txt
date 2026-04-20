@@ -1,0 +1,38 @@
+Benchmark         : gemm
+─────────────────────────────────────────
+Executables:
+  Baseline        : /home/mga113/sanitizer-project/build/polybench/O0/gemm_baseline
+  ASan            : /home/mga113/sanitizer-project/build/polybench/O0/gemm_asan
+  Tool baseline   : /home/mga113/sanitizer-project/build/polybench/O0/gemm_tool_base
+  Tool optimized  : /home/mga113/sanitizer-project/build/polybench/O0/gemm_tool_opt
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 2.30s
+  ASan            : 3.61s
+  Tool baseline   : 25.02s
+  Tool optimized  : 4.45s
+─────────────────────────────────────────
+Runtime comparisons:
+  Speedup         : 5.62
+  Overhead        : 1.93
+  ASan_OH         : 1.57
+  Speedup_v_ASan  : 0.81
+─────────────────────────────────────────
+Static check counts:
+  Checks          : 162
+  Final           : 53
+  Removed         : 109
+  Reduction       : 67
+─────────────────────────────────────────
+Dynamic check counts (actual executions):
+  Baseline execs  : 19375616059
+  Final execs     : 3226472479
+  Saved execs     : 16149143580
+  Dyn reduction   : 83
+─────────────────────────────────────────
+IR / stats files:
+  Baseline IR     : /home/mga113/sanitizer-project/results/polybench/O0/gemm/gemm_baseline.ll
+  ToolBase IR     : /home/mga113/sanitizer-project/results/polybench/O0/gemm/gemm_tool_base.ll
+  ToolOpt IR      : /home/mga113/sanitizer-project/results/polybench/O0/gemm/gemm_tool_opt.ll
+  ToolBase stats  : /home/mga113/sanitizer-project/results/polybench/O0/gemm/check_base_stats.txt
+  ToolOpt stats   : /home/mga113/sanitizer-project/results/polybench/O0/gemm/check_opt_stats.txt

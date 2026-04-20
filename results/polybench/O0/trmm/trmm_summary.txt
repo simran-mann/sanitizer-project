@@ -1,0 +1,38 @@
+Benchmark         : trmm
+─────────────────────────────────────────
+Executables:
+  Baseline        : /home/mga113/sanitizer-project/build/polybench/O0/trmm_baseline
+  ASan            : /home/mga113/sanitizer-project/build/polybench/O0/trmm_asan
+  Tool baseline   : /home/mga113/sanitizer-project/build/polybench/O0/trmm_tool_base
+  Tool optimized  : /home/mga113/sanitizer-project/build/polybench/O0/trmm_tool_opt
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.81s
+  ASan            : 1.41s
+  Tool baseline   : 12.46s
+  Tool optimized  : 1.87s
+─────────────────────────────────────────
+Runtime comparisons:
+  Speedup         : 6.66
+  Overhead        : 2.31
+  ASan_OH         : 1.74
+  Speedup_v_ASan  : 0.75
+─────────────────────────────────────────
+Static check counts:
+  Checks          : 106
+  Final           : 35
+  Removed         : 71
+  Reduction       : 67
+─────────────────────────────────────────
+Dynamic check counts (actual executions):
+  Baseline execs  : 9680460825
+  Final execs     : 1612186641
+  Saved execs     : 8068274184
+  Dyn reduction   : 83
+─────────────────────────────────────────
+IR / stats files:
+  Baseline IR     : /home/mga113/sanitizer-project/results/polybench/O0/trmm/trmm_baseline.ll
+  ToolBase IR     : /home/mga113/sanitizer-project/results/polybench/O0/trmm/trmm_tool_base.ll
+  ToolOpt IR      : /home/mga113/sanitizer-project/results/polybench/O0/trmm/trmm_tool_opt.ll
+  ToolBase stats  : /home/mga113/sanitizer-project/results/polybench/O0/trmm/check_base_stats.txt
+  ToolOpt stats   : /home/mga113/sanitizer-project/results/polybench/O0/trmm/check_opt_stats.txt

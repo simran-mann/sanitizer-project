@@ -1,0 +1,38 @@
+Benchmark         : jacobi-1d-imper
+─────────────────────────────────────────
+Executables:
+  Baseline        : /home/mga113/sanitizer-project/build/polybench/O0/jacobi-1d-imper_baseline
+  ASan            : /home/mga113/sanitizer-project/build/polybench/O0/jacobi-1d-imper_asan
+  Tool baseline   : /home/mga113/sanitizer-project/build/polybench/O0/jacobi-1d-imper_tool_base
+  Tool optimized  : /home/mga113/sanitizer-project/build/polybench/O0/jacobi-1d-imper_tool_opt
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.01s
+  ASan            : 0.03s
+  Tool baseline   : 0.04s
+  Tool optimized  : 0.02s
+─────────────────────────────────────────
+Runtime comparisons:
+  Speedup         : 2.00
+  Overhead        : 2.00
+  ASan_OH         : 3.00
+  Speedup_v_ASan  : 1.50
+─────────────────────────────────────────
+Static check counts:
+  Checks          : 91
+  Final           : 34
+  Removed         : 57
+  Reduction       : 63
+─────────────────────────────────────────
+Dynamic check counts (actual executions):
+  Baseline execs  : 26135830
+  Final execs     : 6019016
+  Saved execs     : 20116814
+  Dyn reduction   : 77
+─────────────────────────────────────────
+IR / stats files:
+  Baseline IR     : /home/mga113/sanitizer-project/results/polybench/O0/jacobi-1d-imper/jacobi-1d-imper_baseline.ll
+  ToolBase IR     : /home/mga113/sanitizer-project/results/polybench/O0/jacobi-1d-imper/jacobi-1d-imper_tool_base.ll
+  ToolOpt IR      : /home/mga113/sanitizer-project/results/polybench/O0/jacobi-1d-imper/jacobi-1d-imper_tool_opt.ll
+  ToolBase stats  : /home/mga113/sanitizer-project/results/polybench/O0/jacobi-1d-imper/check_base_stats.txt
+  ToolOpt stats   : /home/mga113/sanitizer-project/results/polybench/O0/jacobi-1d-imper/check_opt_stats.txt

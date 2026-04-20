@@ -1,0 +1,38 @@
+Benchmark         : durbin
+─────────────────────────────────────────
+Executables:
+  Baseline        : /home/mga113/sanitizer-project/build/polybench/O0/durbin_baseline
+  ASan            : /home/mga113/sanitizer-project/build/polybench/O0/durbin_asan
+  Tool baseline   : /home/mga113/sanitizer-project/build/polybench/O0/durbin_tool_base
+  Tool optimized  : /home/mga113/sanitizer-project/build/polybench/O0/durbin_tool_opt
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.25s
+  ASan            : 0.34s
+  Tool baseline   : 0.87s
+  Tool optimized  : 0.35s
+─────────────────────────────────────────
+Runtime comparisons:
+  Speedup         : 2.49
+  Overhead        : 1.40
+  ASan_OH         : 1.36
+  Speedup_v_ASan  : 0.97
+─────────────────────────────────────────
+Static check counts:
+  Checks          : 205
+  Final           : 67
+  Removed         : 138
+  Reduction       : 67
+─────────────────────────────────────────
+Dynamic check counts (actual executions):
+  Baseline execs  : 608236014
+  Final execs     : 96060018
+  Saved execs     : 512175996
+  Dyn reduction   : 84
+─────────────────────────────────────────
+IR / stats files:
+  Baseline IR     : /home/mga113/sanitizer-project/results/polybench/O0/durbin/durbin_baseline.ll
+  ToolBase IR     : /home/mga113/sanitizer-project/results/polybench/O0/durbin/durbin_tool_base.ll
+  ToolOpt IR      : /home/mga113/sanitizer-project/results/polybench/O0/durbin/durbin_tool_opt.ll
+  ToolBase stats  : /home/mga113/sanitizer-project/results/polybench/O0/durbin/check_base_stats.txt
+  ToolOpt stats   : /home/mga113/sanitizer-project/results/polybench/O0/durbin/check_opt_stats.txt

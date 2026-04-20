@@ -1,0 +1,38 @@
+Benchmark         : cholesky
+─────────────────────────────────────────
+Executables:
+  Baseline        : /home/mga113/sanitizer-project/build/polybench/O2/cholesky_baseline
+  ASan            : /home/mga113/sanitizer-project/build/polybench/O2/cholesky_asan
+  Tool baseline   : /home/mga113/sanitizer-project/build/polybench/O2/cholesky_tool_base
+  Tool optimized  : /home/mga113/sanitizer-project/build/polybench/O2/cholesky_tool_opt
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.07s
+  ASan            : 0.09s
+  Tool baseline   : 0.48s
+  Tool optimized  : 0.48s
+─────────────────────────────────────────
+Runtime comparisons:
+  Speedup         : 1.00
+  Overhead        : 6.86
+  ASan_OH         : 1.29
+  Speedup_v_ASan  : 0.19
+─────────────────────────────────────────
+Static check counts:
+  Checks          : 28
+  Final           : 27
+  Removed         : 1
+  Reduction       : 4
+─────────────────────────────────────────
+Dynamic check counts (actual executions):
+  Baseline execs  : 359488512
+  Final execs     : 358964736
+  Saved execs     : 523776
+  Dyn reduction   : 0
+─────────────────────────────────────────
+IR / stats files:
+  Baseline IR     : /home/mga113/sanitizer-project/results/polybench/O2/cholesky/cholesky_baseline.ll
+  ToolBase IR     : /home/mga113/sanitizer-project/results/polybench/O2/cholesky/cholesky_tool_base.ll
+  ToolOpt IR      : /home/mga113/sanitizer-project/results/polybench/O2/cholesky/cholesky_tool_opt.ll
+  ToolBase stats  : /home/mga113/sanitizer-project/results/polybench/O2/cholesky/check_base_stats.txt
+  ToolOpt stats   : /home/mga113/sanitizer-project/results/polybench/O2/cholesky/check_opt_stats.txt

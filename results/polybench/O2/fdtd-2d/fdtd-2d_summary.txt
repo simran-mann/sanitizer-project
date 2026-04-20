@@ -1,0 +1,38 @@
+Benchmark         : fdtd-2d
+─────────────────────────────────────────
+Executables:
+  Baseline        : /home/mga113/sanitizer-project/build/polybench/O2/fdtd-2d_baseline
+  ASan            : /home/mga113/sanitizer-project/build/polybench/O2/fdtd-2d_asan
+  Tool baseline   : /home/mga113/sanitizer-project/build/polybench/O2/fdtd-2d_tool_base
+  Tool optimized  : /home/mga113/sanitizer-project/build/polybench/O2/fdtd-2d_tool_opt
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.06s
+  ASan            : 0.10s
+  Tool baseline   : 0.45s
+  Tool optimized  : 0.34s
+─────────────────────────────────────────
+Runtime comparisons:
+  Speedup         : 1.32
+  Overhead        : 5.67
+  ASan_OH         : 1.67
+  Speedup_v_ASan  : 0.29
+─────────────────────────────────────────
+Static check counts:
+  Checks          : 86
+  Final           : 70
+  Removed         : 16
+  Reduction       : 19
+─────────────────────────────────────────
+Dynamic check counts (actual executions):
+  Baseline execs  : 351775250
+  Final execs     : 276725300
+  Saved execs     : 75049950
+  Dyn reduction   : 21
+─────────────────────────────────────────
+IR / stats files:
+  Baseline IR     : /home/mga113/sanitizer-project/results/polybench/O2/fdtd-2d/fdtd-2d_baseline.ll
+  ToolBase IR     : /home/mga113/sanitizer-project/results/polybench/O2/fdtd-2d/fdtd-2d_tool_base.ll
+  ToolOpt IR      : /home/mga113/sanitizer-project/results/polybench/O2/fdtd-2d/fdtd-2d_tool_opt.ll
+  ToolBase stats  : /home/mga113/sanitizer-project/results/polybench/O2/fdtd-2d/check_base_stats.txt
+  ToolOpt stats   : /home/mga113/sanitizer-project/results/polybench/O2/fdtd-2d/check_opt_stats.txt

@@ -1,0 +1,38 @@
+Benchmark         : 2mm
+─────────────────────────────────────────
+Executables:
+  Baseline        : /home/mga113/sanitizer-project/build/polybench/O0/2mm_baseline
+  ASan            : /home/mga113/sanitizer-project/build/polybench/O0/2mm_asan
+  Tool baseline   : /home/mga113/sanitizer-project/build/polybench/O0/2mm_tool_base
+  Tool optimized  : /home/mga113/sanitizer-project/build/polybench/O0/2mm_tool_opt
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 4.66s
+  ASan            : 7.13s
+  Tool baseline   : 49.82s
+  Tool optimized  : 8.73s
+─────────────────────────────────────────
+Runtime comparisons:
+  Speedup         : 5.71
+  Overhead        : 1.87
+  ASan_OH         : 1.53
+  Speedup_v_ASan  : 0.82
+─────────────────────────────────────────
+Static check counts:
+  Checks          : 226
+  Final           : 69
+  Removed         : 157
+  Reduction       : 69
+─────────────────────────────────────────
+Dynamic check counts (actual executions):
+  Baseline execs  : 37652310096
+  Final execs     : 6450845735
+  Saved execs     : 31201464361
+  Dyn reduction   : 83
+─────────────────────────────────────────
+IR / stats files:
+  Baseline IR     : /home/mga113/sanitizer-project/results/polybench/O0/2mm/2mm_baseline.ll
+  ToolBase IR     : /home/mga113/sanitizer-project/results/polybench/O0/2mm/2mm_tool_base.ll
+  ToolOpt IR      : /home/mga113/sanitizer-project/results/polybench/O0/2mm/2mm_tool_opt.ll
+  ToolBase stats  : /home/mga113/sanitizer-project/results/polybench/O0/2mm/check_base_stats.txt
+  ToolOpt stats   : /home/mga113/sanitizer-project/results/polybench/O0/2mm/check_opt_stats.txt

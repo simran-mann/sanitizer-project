@@ -1,0 +1,38 @@
+Benchmark         : gesummv
+─────────────────────────────────────────
+Executables:
+  Baseline        : /home/mga113/sanitizer-project/build/polybench/O0/gesummv_baseline
+  ASan            : /home/mga113/sanitizer-project/build/polybench/O0/gesummv_asan
+  Tool baseline   : /home/mga113/sanitizer-project/build/polybench/O0/gesummv_tool_base
+  Tool optimized  : /home/mga113/sanitizer-project/build/polybench/O0/gesummv_tool_opt
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.22s
+  ASan            : 0.29s
+  Tool baseline   : 1.06s
+  Tool optimized  : 0.39s
+─────────────────────────────────────────
+Runtime comparisons:
+  Speedup         : 2.72
+  Overhead        : 1.77
+  ASan_OH         : 1.32
+  Speedup_v_ASan  : 0.74
+─────────────────────────────────────────
+Static check counts:
+  Checks          : 145
+  Final           : 54
+  Removed         : 91
+  Reduction       : 63
+─────────────────────────────────────────
+Dynamic check counts (actual executions):
+  Baseline execs  : 768144051
+  Final execs     : 160032029
+  Saved execs     : 608112022
+  Dyn reduction   : 79
+─────────────────────────────────────────
+IR / stats files:
+  Baseline IR     : /home/mga113/sanitizer-project/results/polybench/O0/gesummv/gesummv_baseline.ll
+  ToolBase IR     : /home/mga113/sanitizer-project/results/polybench/O0/gesummv/gesummv_tool_base.ll
+  ToolOpt IR      : /home/mga113/sanitizer-project/results/polybench/O0/gesummv/gesummv_tool_opt.ll
+  ToolBase stats  : /home/mga113/sanitizer-project/results/polybench/O0/gesummv/check_base_stats.txt
+  ToolOpt stats   : /home/mga113/sanitizer-project/results/polybench/O0/gesummv/check_opt_stats.txt

@@ -1,0 +1,38 @@
+Benchmark         : fdtd-apml
+─────────────────────────────────────────
+Executables:
+  Baseline        : /home/mga113/sanitizer-project/build/polybench/O2/fdtd-apml_baseline
+  ASan            : /home/mga113/sanitizer-project/build/polybench/O2/fdtd-apml_asan
+  Tool baseline   : /home/mga113/sanitizer-project/build/polybench/O2/fdtd-apml_tool_base
+  Tool optimized  : /home/mga113/sanitizer-project/build/polybench/O2/fdtd-apml_tool_opt
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.26s
+  ASan            : 0.31s
+  Tool baseline   : 0.97s
+  Tool optimized  : 0.64s
+─────────────────────────────────────────
+Runtime comparisons:
+  Speedup         : 1.52
+  Overhead        : 2.46
+  ASan_OH         : 1.19
+  Speedup_v_ASan  : 0.48
+─────────────────────────────────────────
+Static check counts:
+  Checks          : 121
+  Final           : 83
+  Removed         : 38
+  Reduction       : 31
+─────────────────────────────────────────
+Dynamic check counts (actual executions):
+  Baseline execs  : 632032907
+  Final execs     : 429330059
+  Saved execs     : 202702848
+  Dyn reduction   : 32
+─────────────────────────────────────────
+IR / stats files:
+  Baseline IR     : /home/mga113/sanitizer-project/results/polybench/O2/fdtd-apml/fdtd-apml_baseline.ll
+  ToolBase IR     : /home/mga113/sanitizer-project/results/polybench/O2/fdtd-apml/fdtd-apml_tool_base.ll
+  ToolOpt IR      : /home/mga113/sanitizer-project/results/polybench/O2/fdtd-apml/fdtd-apml_tool_opt.ll
+  ToolBase stats  : /home/mga113/sanitizer-project/results/polybench/O2/fdtd-apml/check_base_stats.txt
+  ToolOpt stats   : /home/mga113/sanitizer-project/results/polybench/O2/fdtd-apml/check_opt_stats.txt

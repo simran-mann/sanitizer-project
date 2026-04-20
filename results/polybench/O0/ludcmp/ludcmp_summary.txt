@@ -1,0 +1,38 @@
+Benchmark         : ludcmp
+─────────────────────────────────────────
+Executables:
+  Baseline        : /home/mga113/sanitizer-project/build/polybench/O0/ludcmp_baseline
+  ASan            : /home/mga113/sanitizer-project/build/polybench/O0/ludcmp_asan
+  Tool baseline   : /home/mga113/sanitizer-project/build/polybench/O0/ludcmp_tool_base
+  Tool optimized  : /home/mga113/sanitizer-project/build/polybench/O0/ludcmp_tool_opt
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.56s
+  ASan            : 0.95s
+  Tool baseline   : 6.97s
+  Tool optimized  : 0.99s
+─────────────────────────────────────────
+Runtime comparisons:
+  Speedup         : 7.04
+  Overhead        : 1.77
+  ASan_OH         : 1.70
+  Speedup_v_ASan  : 0.96
+─────────────────────────────────────────
+Static check counts:
+  Checks          : 234
+  Final           : 65
+  Removed         : 169
+  Reduction       : 72
+─────────────────────────────────────────
+Dynamic check counts (actual executions):
+  Baseline execs  : 5063881309
+  Final execs     : 724764191
+  Saved execs     : 4339117118
+  Dyn reduction   : 86
+─────────────────────────────────────────
+IR / stats files:
+  Baseline IR     : /home/mga113/sanitizer-project/results/polybench/O0/ludcmp/ludcmp_baseline.ll
+  ToolBase IR     : /home/mga113/sanitizer-project/results/polybench/O0/ludcmp/ludcmp_tool_base.ll
+  ToolOpt IR      : /home/mga113/sanitizer-project/results/polybench/O0/ludcmp/ludcmp_tool_opt.ll
+  ToolBase stats  : /home/mga113/sanitizer-project/results/polybench/O0/ludcmp/check_base_stats.txt
+  ToolOpt stats   : /home/mga113/sanitizer-project/results/polybench/O0/ludcmp/check_opt_stats.txt

@@ -1,0 +1,38 @@
+Benchmark         : covariance
+─────────────────────────────────────────
+Executables:
+  Baseline        : /home/mga113/sanitizer-project/build/polybench/O0/covariance_baseline
+  ASan            : /home/mga113/sanitizer-project/build/polybench/O0/covariance_asan
+  Tool baseline   : /home/mga113/sanitizer-project/build/polybench/O0/covariance_tool_base
+  Tool optimized  : /home/mga113/sanitizer-project/build/polybench/O0/covariance_tool_opt
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.87s
+  ASan            : 1.48s
+  Tool baseline   : 11.02s
+  Tool optimized  : 1.94s
+─────────────────────────────────────────
+Runtime comparisons:
+  Speedup         : 5.68
+  Overhead        : 2.23
+  ASan_OH         : 1.70
+  Speedup_v_ASan  : 0.76
+─────────────────────────────────────────
+Static check counts:
+  Checks          : 159
+  Final           : 49
+  Removed         : 110
+  Reduction       : 69
+─────────────────────────────────────────
+Dynamic check counts (actual executions):
+  Baseline execs  : 8551044544
+  Final execs     : 1508006524
+  Saved execs     : 7043038020
+  Dyn reduction   : 82
+─────────────────────────────────────────
+IR / stats files:
+  Baseline IR     : /home/mga113/sanitizer-project/results/polybench/O0/covariance/covariance_baseline.ll
+  ToolBase IR     : /home/mga113/sanitizer-project/results/polybench/O0/covariance/covariance_tool_base.ll
+  ToolOpt IR      : /home/mga113/sanitizer-project/results/polybench/O0/covariance/covariance_tool_opt.ll
+  ToolBase stats  : /home/mga113/sanitizer-project/results/polybench/O0/covariance/check_base_stats.txt
+  ToolOpt stats   : /home/mga113/sanitizer-project/results/polybench/O0/covariance/check_opt_stats.txt

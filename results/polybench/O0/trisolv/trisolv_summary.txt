@@ -1,0 +1,38 @@
+Benchmark         : trisolv
+─────────────────────────────────────────
+Executables:
+  Baseline        : /home/mga113/sanitizer-project/build/polybench/O0/trisolv_baseline
+  ASan            : /home/mga113/sanitizer-project/build/polybench/O0/trisolv_asan
+  Tool baseline   : /home/mga113/sanitizer-project/build/polybench/O0/trisolv_tool_base
+  Tool optimized  : /home/mga113/sanitizer-project/build/polybench/O0/trisolv_tool_opt
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.11s
+  ASan            : 0.15s
+  Tool baseline   : 0.43s
+  Tool optimized  : 0.15s
+─────────────────────────────────────────
+Runtime comparisons:
+  Speedup         : 2.87
+  Overhead        : 1.36
+  ASan_OH         : 1.36
+  Speedup_v_ASan  : 1.00
+─────────────────────────────────────────
+Static check counts:
+  Checks          : 109
+  Final           : 38
+  Removed         : 71
+  Reduction       : 65
+─────────────────────────────────────────
+Dynamic check counts (actual executions):
+  Baseline execs  : 312118033
+  Final execs     : 48028017
+  Saved execs     : 264090016
+  Dyn reduction   : 85
+─────────────────────────────────────────
+IR / stats files:
+  Baseline IR     : /home/mga113/sanitizer-project/results/polybench/O0/trisolv/trisolv_baseline.ll
+  ToolBase IR     : /home/mga113/sanitizer-project/results/polybench/O0/trisolv/trisolv_tool_base.ll
+  ToolOpt IR      : /home/mga113/sanitizer-project/results/polybench/O0/trisolv/trisolv_tool_opt.ll
+  ToolBase stats  : /home/mga113/sanitizer-project/results/polybench/O0/trisolv/check_base_stats.txt
+  ToolOpt stats   : /home/mga113/sanitizer-project/results/polybench/O0/trisolv/check_opt_stats.txt

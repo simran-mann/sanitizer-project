@@ -1,0 +1,38 @@
+Benchmark         : floyd-warshall
+─────────────────────────────────────────
+Executables:
+  Baseline        : /home/mga113/sanitizer-project/build/polybench/O2/floyd-warshall_baseline
+  ASan            : /home/mga113/sanitizer-project/build/polybench/O2/floyd-warshall_asan
+  Tool baseline   : /home/mga113/sanitizer-project/build/polybench/O2/floyd-warshall_tool_base
+  Tool optimized  : /home/mga113/sanitizer-project/build/polybench/O2/floyd-warshall_tool_opt
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.33s
+  ASan            : 0.62s
+  Tool baseline   : 5.87s
+  Tool optimized  : 3.43s
+─────────────────────────────────────────
+Runtime comparisons:
+  Speedup         : 1.71
+  Overhead        : 10.39
+  ASan_OH         : 1.88
+  Speedup_v_ASan  : 0.18
+─────────────────────────────────────────
+Static check counts:
+  Checks          : 24
+  Final           : 17
+  Removed         : 7
+  Reduction       : 29
+─────────────────────────────────────────
+Dynamic check counts (actual executions):
+  Baseline execs  : 4296015872
+  Final execs     : 2685403136
+  Saved execs     : 1610612736
+  Dyn reduction   : 37
+─────────────────────────────────────────
+IR / stats files:
+  Baseline IR     : /home/mga113/sanitizer-project/results/polybench/O2/floyd-warshall/floyd-warshall_baseline.ll
+  ToolBase IR     : /home/mga113/sanitizer-project/results/polybench/O2/floyd-warshall/floyd-warshall_tool_base.ll
+  ToolOpt IR      : /home/mga113/sanitizer-project/results/polybench/O2/floyd-warshall/floyd-warshall_tool_opt.ll
+  ToolBase stats  : /home/mga113/sanitizer-project/results/polybench/O2/floyd-warshall/check_base_stats.txt
+  ToolOpt stats   : /home/mga113/sanitizer-project/results/polybench/O2/floyd-warshall/check_opt_stats.txt

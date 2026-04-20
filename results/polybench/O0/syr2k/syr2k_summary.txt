@@ -1,0 +1,38 @@
+Benchmark         : syr2k
+─────────────────────────────────────────
+Executables:
+  Baseline        : /home/mga113/sanitizer-project/build/polybench/O0/syr2k_baseline
+  ASan            : /home/mga113/sanitizer-project/build/polybench/O0/syr2k_asan
+  Tool baseline   : /home/mga113/sanitizer-project/build/polybench/O0/syr2k_tool_base
+  Tool optimized  : /home/mga113/sanitizer-project/build/polybench/O0/syr2k_tool_opt
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 3.17s
+  ASan            : 5.64s
+  Tool baseline   : 44.41s
+  Tool optimized  : 7.41s
+─────────────────────────────────────────
+Runtime comparisons:
+  Speedup         : 5.99
+  Overhead        : 2.34
+  ASan_OH         : 1.78
+  Speedup_v_ASan  : 0.76
+─────────────────────────────────────────
+Static check counts:
+  Checks          : 169
+  Final           : 52
+  Removed         : 117
+  Reduction       : 69
+─────────────────────────────────────────
+Dynamic check counts (actual executions):
+  Baseline execs  : 34408001590
+  Final execs     : 6447697948
+  Saved execs     : 27960303642
+  Dyn reduction   : 81
+─────────────────────────────────────────
+IR / stats files:
+  Baseline IR     : /home/mga113/sanitizer-project/results/polybench/O0/syr2k/syr2k_baseline.ll
+  ToolBase IR     : /home/mga113/sanitizer-project/results/polybench/O0/syr2k/syr2k_tool_base.ll
+  ToolOpt IR      : /home/mga113/sanitizer-project/results/polybench/O0/syr2k/syr2k_tool_opt.ll
+  ToolBase stats  : /home/mga113/sanitizer-project/results/polybench/O0/syr2k/check_base_stats.txt
+  ToolOpt stats   : /home/mga113/sanitizer-project/results/polybench/O0/syr2k/check_opt_stats.txt

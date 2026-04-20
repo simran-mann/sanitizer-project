@@ -1,0 +1,14 @@
+DEBUG PRINT::: lambda callback called with: instrument
+debug print: visiting functoin mainwith # bbs=19
+Instrumenting function: main,  20 checks inserted
+debug print: visiting functoin print_arraywith # bbs=7
+Instrumenting function: print_array,  4 checks inserted
+
+========================================
+           Statistics           
+========================================
+  Total memory accesses : 24
+  Checks inserted       : 24
+  Checks removed        : 0
+  Final checks          : 24
+  Reduction             : 0%

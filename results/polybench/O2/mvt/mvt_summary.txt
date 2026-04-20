@@ -1,0 +1,38 @@
+Benchmark         : mvt
+─────────────────────────────────────────
+Executables:
+  Baseline        : /home/mga113/sanitizer-project/build/polybench/O2/mvt_baseline
+  ASan            : /home/mga113/sanitizer-project/build/polybench/O2/mvt_asan
+  Tool baseline   : /home/mga113/sanitizer-project/build/polybench/O2/mvt_tool_base
+  Tool optimized  : /home/mga113/sanitizer-project/build/polybench/O2/mvt_tool_opt
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.11s
+  ASan            : 0.15s
+  Tool baseline   : 0.17s
+  Tool optimized  : 0.14s
+─────────────────────────────────────────
+Runtime comparisons:
+  Speedup         : 1.21
+  Overhead        : 1.27
+  ASan_OH         : 1.36
+  Speedup_v_ASan  : 1.07
+─────────────────────────────────────────
+Static check counts:
+  Checks          : 27
+  Final           : 21
+  Removed         : 6
+  Reduction       : 22
+─────────────────────────────────────────
+Dynamic check counts (actual executions):
+  Baseline execs  : 104024000
+  Final execs     : 72024000
+  Saved execs     : 32000000
+  Dyn reduction   : 31
+─────────────────────────────────────────
+IR / stats files:
+  Baseline IR     : /home/mga113/sanitizer-project/results/polybench/O2/mvt/mvt_baseline.ll
+  ToolBase IR     : /home/mga113/sanitizer-project/results/polybench/O2/mvt/mvt_tool_base.ll
+  ToolOpt IR      : /home/mga113/sanitizer-project/results/polybench/O2/mvt/mvt_tool_opt.ll
+  ToolBase stats  : /home/mga113/sanitizer-project/results/polybench/O2/mvt/check_base_stats.txt
+  ToolOpt stats   : /home/mga113/sanitizer-project/results/polybench/O2/mvt/check_opt_stats.txt

@@ -1,0 +1,38 @@
+Benchmark         : dynprog
+─────────────────────────────────────────
+Executables:
+  Baseline        : /home/mga113/sanitizer-project/build/polybench/O0/dynprog_baseline
+  ASan            : /home/mga113/sanitizer-project/build/polybench/O0/dynprog_asan
+  Tool baseline   : /home/mga113/sanitizer-project/build/polybench/O0/dynprog_tool_base
+  Tool optimized  : /home/mga113/sanitizer-project/build/polybench/O0/dynprog_tool_opt
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.34s
+  ASan            : 0.64s
+  Tool baseline   : 6.33s
+  Tool optimized  : 1.07s
+─────────────────────────────────────────
+Runtime comparisons:
+  Speedup         : 5.92
+  Overhead        : 3.15
+  ASan_OH         : 1.88
+  Speedup_v_ASan  : 0.60
+─────────────────────────────────────────
+Static check counts:
+  Checks          : 141
+  Final           : 43
+  Removed         : 98
+  Reduction       : 70
+─────────────────────────────────────────
+Dynamic check counts (actual executions):
+  Baseline execs  : 4838112889
+  Final execs     : 871265071
+  Saved execs     : 3966847818
+  Dyn reduction   : 82
+─────────────────────────────────────────
+IR / stats files:
+  Baseline IR     : /home/mga113/sanitizer-project/results/polybench/O0/dynprog/dynprog_baseline.ll
+  ToolBase IR     : /home/mga113/sanitizer-project/results/polybench/O0/dynprog/dynprog_tool_base.ll
+  ToolOpt IR      : /home/mga113/sanitizer-project/results/polybench/O0/dynprog/dynprog_tool_opt.ll
+  ToolBase stats  : /home/mga113/sanitizer-project/results/polybench/O0/dynprog/check_base_stats.txt
+  ToolOpt stats   : /home/mga113/sanitizer-project/results/polybench/O0/dynprog/check_opt_stats.txt

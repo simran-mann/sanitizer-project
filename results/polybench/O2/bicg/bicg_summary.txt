@@ -1,0 +1,38 @@
+Benchmark         : bicg
+─────────────────────────────────────────
+Executables:
+  Baseline        : /home/mga113/sanitizer-project/build/polybench/O2/bicg_baseline
+  ASan            : /home/mga113/sanitizer-project/build/polybench/O2/bicg_asan
+  Tool baseline   : /home/mga113/sanitizer-project/build/polybench/O2/bicg_tool_base
+  Tool optimized  : /home/mga113/sanitizer-project/build/polybench/O2/bicg_tool_opt
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.07s
+  ASan            : 0.07s
+  Tool baseline   : 0.20s
+  Tool optimized  : 0.12s
+─────────────────────────────────────────
+Runtime comparisons:
+  Speedup         : 1.67
+  Overhead        : 1.71
+  ASan_OH         : 1.00
+  Speedup_v_ASan  : 0.58
+─────────────────────────────────────────
+Static check counts:
+  Checks          : 25
+  Final           : 17
+  Removed         : 8
+  Reduction       : 32
+─────────────────────────────────────────
+Dynamic check counts (actual executions):
+  Baseline execs  : 136010000
+  Final execs     : 72010000
+  Saved execs     : 64000000
+  Dyn reduction   : 47
+─────────────────────────────────────────
+IR / stats files:
+  Baseline IR     : /home/mga113/sanitizer-project/results/polybench/O2/bicg/bicg_baseline.ll
+  ToolBase IR     : /home/mga113/sanitizer-project/results/polybench/O2/bicg/bicg_tool_base.ll
+  ToolOpt IR      : /home/mga113/sanitizer-project/results/polybench/O2/bicg/bicg_tool_opt.ll
+  ToolBase stats  : /home/mga113/sanitizer-project/results/polybench/O2/bicg/check_base_stats.txt
+  ToolOpt stats   : /home/mga113/sanitizer-project/results/polybench/O2/bicg/check_opt_stats.txt

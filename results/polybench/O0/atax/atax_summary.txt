@@ -1,0 +1,38 @@
+Benchmark         : atax
+─────────────────────────────────────────
+Executables:
+  Baseline        : /home/mga113/sanitizer-project/build/polybench/O0/atax_baseline
+  ASan            : /home/mga113/sanitizer-project/build/polybench/O0/atax_asan
+  Tool baseline   : /home/mga113/sanitizer-project/build/polybench/O0/atax_tool_base
+  Tool optimized  : /home/mga113/sanitizer-project/build/polybench/O0/atax_tool_opt
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.13s
+  ASan            : 0.22s
+  Tool baseline   : 1.01s
+  Tool optimized  : 0.27s
+─────────────────────────────────────────
+Runtime comparisons:
+  Speedup         : 3.74
+  Overhead        : 2.08
+  ASan_OH         : 1.69
+  Speedup_v_ASan  : 0.81
+─────────────────────────────────────────
+Static check counts:
+  Checks          : 131
+  Final           : 43
+  Removed         : 88
+  Reduction       : 67
+─────────────────────────────────────────
+Dynamic check counts (actual executions):
+  Baseline execs  : 720140046
+  Final execs     : 144020021
+  Saved execs     : 576120025
+  Dyn reduction   : 80
+─────────────────────────────────────────
+IR / stats files:
+  Baseline IR     : /home/mga113/sanitizer-project/results/polybench/O0/atax/atax_baseline.ll
+  ToolBase IR     : /home/mga113/sanitizer-project/results/polybench/O0/atax/atax_tool_base.ll
+  ToolOpt IR      : /home/mga113/sanitizer-project/results/polybench/O0/atax/atax_tool_opt.ll
+  ToolBase stats  : /home/mga113/sanitizer-project/results/polybench/O0/atax/check_base_stats.txt
+  ToolOpt stats   : /home/mga113/sanitizer-project/results/polybench/O0/atax/check_opt_stats.txt

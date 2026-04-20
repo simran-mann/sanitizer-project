@@ -1,0 +1,38 @@
+Benchmark         : gramschmidt
+─────────────────────────────────────────
+Executables:
+  Baseline        : /home/mga113/sanitizer-project/build/polybench/O0/gramschmidt_baseline
+  ASan            : /home/mga113/sanitizer-project/build/polybench/O0/gramschmidt_asan
+  Tool baseline   : /home/mga113/sanitizer-project/build/polybench/O0/gramschmidt_tool_base
+  Tool optimized  : /home/mga113/sanitizer-project/build/polybench/O0/gramschmidt_tool_opt
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.45s
+  ASan            : 0.54s
+  Tool baseline   : 3.34s
+  Tool optimized  : 0.64s
+─────────────────────────────────────────
+Runtime comparisons:
+  Speedup         : 5.22
+  Overhead        : 1.42
+  ASan_OH         : 1.20
+  Speedup_v_ASan  : 0.84
+─────────────────────────────────────────
+Static check counts:
+  Checks          : 232
+  Final           : 58
+  Removed         : 174
+  Reduction       : 75
+─────────────────────────────────────────
+Dynamic check counts (actual executions):
+  Baseline execs  : 2495493673
+  Final execs     : 471075604
+  Saved execs     : 2024418069
+  Dyn reduction   : 81
+─────────────────────────────────────────
+IR / stats files:
+  Baseline IR     : /home/mga113/sanitizer-project/results/polybench/O0/gramschmidt/gramschmidt_baseline.ll
+  ToolBase IR     : /home/mga113/sanitizer-project/results/polybench/O0/gramschmidt/gramschmidt_tool_base.ll
+  ToolOpt IR      : /home/mga113/sanitizer-project/results/polybench/O0/gramschmidt/gramschmidt_tool_opt.ll
+  ToolBase stats  : /home/mga113/sanitizer-project/results/polybench/O0/gramschmidt/check_base_stats.txt
+  ToolOpt stats   : /home/mga113/sanitizer-project/results/polybench/O0/gramschmidt/check_opt_stats.txt

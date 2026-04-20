@@ -1,0 +1,38 @@
+Benchmark         : symm
+─────────────────────────────────────────
+Executables:
+  Baseline        : /home/mga113/sanitizer-project/build/polybench/O0/symm_baseline
+  ASan            : /home/mga113/sanitizer-project/build/polybench/O0/symm_asan
+  Tool baseline   : /home/mga113/sanitizer-project/build/polybench/O0/symm_tool_base
+  Tool optimized  : /home/mga113/sanitizer-project/build/polybench/O0/symm_tool_opt
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 2.94s
+  ASan            : 3.33s
+  Tool baseline   : 19.52s
+  Tool optimized  : 3.87s
+─────────────────────────────────────────
+Runtime comparisons:
+  Speedup         : 5.04
+  Overhead        : 1.32
+  ASan_OH         : 1.13
+  Speedup_v_ASan  : 0.86
+─────────────────────────────────────────
+Static check counts:
+  Checks          : 172
+  Final           : 55
+  Removed         : 117
+  Reduction       : 68
+─────────────────────────────────────────
+Dynamic check counts (actual executions):
+  Baseline execs  : 15048164403
+  Final execs     : 2685935644
+  Saved execs     : 12362228759
+  Dyn reduction   : 82
+─────────────────────────────────────────
+IR / stats files:
+  Baseline IR     : /home/mga113/sanitizer-project/results/polybench/O0/symm/symm_baseline.ll
+  ToolBase IR     : /home/mga113/sanitizer-project/results/polybench/O0/symm/symm_tool_base.ll
+  ToolOpt IR      : /home/mga113/sanitizer-project/results/polybench/O0/symm/symm_tool_opt.ll
+  ToolBase stats  : /home/mga113/sanitizer-project/results/polybench/O0/symm/check_base_stats.txt
+  ToolOpt stats   : /home/mga113/sanitizer-project/results/polybench/O0/symm/check_opt_stats.txt

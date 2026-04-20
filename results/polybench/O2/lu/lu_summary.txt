@@ -1,0 +1,38 @@
+Benchmark         : lu
+─────────────────────────────────────────
+Executables:
+  Baseline        : /home/mga113/sanitizer-project/build/polybench/O2/lu_baseline
+  ASan            : /home/mga113/sanitizer-project/build/polybench/O2/lu_asan
+  Tool baseline   : /home/mga113/sanitizer-project/build/polybench/O2/lu_tool_base
+  Tool optimized  : /home/mga113/sanitizer-project/build/polybench/O2/lu_tool_opt
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.11s
+  ASan            : 0.26s
+  Tool baseline   : 1.88s
+  Tool optimized  : 1.15s
+─────────────────────────────────────────
+Runtime comparisons:
+  Speedup         : 1.63
+  Overhead        : 10.45
+  ASan_OH         : 2.36
+  Speedup_v_ASan  : 0.23
+─────────────────────────────────────────
+Static check counts:
+  Checks          : 34
+  Final           : 24
+  Removed         : 10
+  Reduction       : 29
+─────────────────────────────────────────
+Dynamic check counts (actual executions):
+  Baseline execs  : 1431394304
+  Final execs     : 895178496
+  Saved execs     : 536215808
+  Dyn reduction   : 37
+─────────────────────────────────────────
+IR / stats files:
+  Baseline IR     : /home/mga113/sanitizer-project/results/polybench/O2/lu/lu_baseline.ll
+  ToolBase IR     : /home/mga113/sanitizer-project/results/polybench/O2/lu/lu_tool_base.ll
+  ToolOpt IR      : /home/mga113/sanitizer-project/results/polybench/O2/lu/lu_tool_opt.ll
+  ToolBase stats  : /home/mga113/sanitizer-project/results/polybench/O2/lu/check_base_stats.txt
+  ToolOpt stats   : /home/mga113/sanitizer-project/results/polybench/O2/lu/check_opt_stats.txt

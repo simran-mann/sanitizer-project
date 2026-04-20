@@ -1,0 +1,23 @@
+DEBUG PRINT::: lambda callback called with: instrument
+DEBUG PRINT::: lambda callback called with: remove-redundant
+debug print: visiting functoin mainwith # bbs=4
+Instrumenting function: main,  20 checks inserted
+Removing rudundant calls in function main, removed 12 of 20 check(s)
+debug print: visiting functoin init_arraywith # bbs=9
+Instrumenting function: init_array,  30 checks inserted
+Removing rudundant calls in function init_array, removed 21 of 30 check(s)
+debug print: visiting functoin kernel_trmmwith # bbs=13
+Instrumenting function: kernel_trmm,  33 checks inserted
+Removing rudundant calls in function kernel_trmm, removed 23 of 33 check(s)
+debug print: visiting functoin print_arraywith # bbs=11
+Instrumenting function: print_array,  22 checks inserted
+Removing rudundant calls in function print_array, removed 15 of 22 check(s)
+
+========================================
+           Statistics           
+========================================
+  Total memory accesses : 105
+  Checks inserted       : 105
+  Checks removed        : 71
+  Final checks          : 34
+  Reduction             : 67%

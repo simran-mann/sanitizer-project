@@ -1,0 +1,38 @@
+Benchmark         : reg_detect
+─────────────────────────────────────────
+Executables:
+  Baseline        : /home/mga113/sanitizer-project/build/polybench/O0/reg_detect_baseline
+  ASan            : /home/mga113/sanitizer-project/build/polybench/O0/reg_detect_asan
+  Tool baseline   : /home/mga113/sanitizer-project/build/polybench/O0/reg_detect_tool_base
+  Tool optimized  : /home/mga113/sanitizer-project/build/polybench/O0/reg_detect_tool_opt
+─────────────────────────────────────────
+Runtime (minimum of 3 runs):
+  Baseline        : 0.04s
+  ASan            : 0.06s
+  Tool baseline   : 0.58s
+  Tool optimized  : 0.09s
+─────────────────────────────────────────
+Runtime comparisons:
+  Speedup         : 6.44
+  Overhead        : 2.25
+  ASan_OH         : 1.50
+  Speedup_v_ASan  : 0.67
+─────────────────────────────────────────
+Static check counts:
+  Checks          : 210
+  Final           : 58
+  Removed         : 152
+  Reduction       : 72
+─────────────────────────────────────────
+Dynamic check counts (actual executions):
+  Baseline execs  : 437120953
+  Final execs     : 68540139
+  Saved execs     : 368580814
+  Dyn reduction   : 84
+─────────────────────────────────────────
+IR / stats files:
+  Baseline IR     : /home/mga113/sanitizer-project/results/polybench/O0/reg_detect/reg_detect_baseline.ll
+  ToolBase IR     : /home/mga113/sanitizer-project/results/polybench/O0/reg_detect/reg_detect_tool_base.ll
+  ToolOpt IR      : /home/mga113/sanitizer-project/results/polybench/O0/reg_detect/reg_detect_tool_opt.ll
+  ToolBase stats  : /home/mga113/sanitizer-project/results/polybench/O0/reg_detect/check_base_stats.txt
+  ToolOpt stats   : /home/mga113/sanitizer-project/results/polybench/O0/reg_detect/check_opt_stats.txt
