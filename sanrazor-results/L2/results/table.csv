@@ -1,0 +1,7 @@
+Program,Base(s),SanRz(s),Speedup,Checks
+matrix_mult,0.017s,0.022s,0.77x,0
+array_sum,0.018s,0.020s,0.90x,0
+quicksort,0.077s,0.073s,1.05x,0
+binary_search,0.199s,0.202s,0.99x,0
+convolution,0.003s,0.006s,0.50x,0
+knapsack,0.007s,0.008s,0.88x,0
