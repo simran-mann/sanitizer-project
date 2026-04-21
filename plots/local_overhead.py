@@ -50,7 +50,7 @@ def plot_overheads(tool_path, sz_path, output_png):
     tool_oh = [t_data[p]['opt'] / t_data[p]['base'] for p in programs]
     
     # compute sanrazor overhead
-    sz_oh = [sz_data[p]['sr'] / sz_data[p]['base'] for p in programs]
+    sz_oh = [sz_data[p]['sr'] / t_data[p]['base'] for p in programs]
 
     # plot
     x = np.arange(len(programs))
