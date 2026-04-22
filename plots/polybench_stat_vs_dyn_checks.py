@@ -5,10 +5,10 @@ import os
 # define the polybench groups for averaging
 GROUPS = {
     'Datamining': ['correlation', 'covariance'],
-    'LA Kernels (BLAS)': ['2mm', '3mm', 'atax', 'bicg', 'doitgen', 'gemm', 'gemver', 
+    'LA Kernels (BLAS)': ['2mm', '3mm', 'atax', 'bicg', 'cholesky', 'doitgen', 'gemm', 'gemver', 
                           'gesummv', 'mvt', 'symm', 'syr2k', 'syrk', 'trisolv', 'trmm'],
-    'LA Solvers': ['cholesky', 'durbin', 'gramschmidt', 'lu', 'ludcmp'],
-    'Medley': ['floyd-warshall', 'reg_detect', 'dynprog'],
+    'LA Solvers': ['durbin', 'dynprog', 'gramschmidt', 'lu', 'ludcmp'],
+    # 'Medley': ['floyd-warshall', 'reg_detect', ],
     'Stencils': ['adi', 'fdtd-2d', 'fdtd-apml', 'jacobi-1d-imper', 'jacobi-2d-imper', 'seidel-2d']
 }
 
@@ -73,12 +73,12 @@ def plot_reduction(check_path, output_png):
     dyn = plt.bar(x + width/2, d_vals, width, label='Dynamic', color='#f7b557')
 
     # formatting
-    plt.title('Average Check Reductions across PolyBench Domains', fontweight='bold', fontsize=15, pad=20)
-    plt.ylabel('Average Reduction (%)', fontweight='bold')
-    plt.xlabel('PolyBench Domains', fontweight='bold')
-    plt.xticks(x, stats, rotation=15)
+    plt.title('Average Check Reductions across PolyBench Domains', fontweight='bold', fontsize=25, pad=20)
+    plt.ylabel('Average Reduction (%)', fontsize=20, fontweight='bold')
+    plt.xlabel('PolyBench Domains',  fontsize=20, fontweight='bold')
+    plt.xticks(x, stats, fontsize=20, fontweight='bold', rotation=15)
     plt.ylim(0, 40) 
-    plt.legend()
+    plt.legend(fontsize=16)
     plt.grid(axis='y', linestyle=':', alpha=0.7)
 
     # add text labels on top of bars
@@ -89,7 +89,7 @@ def plot_reduction(check_path, output_png):
                         xy=(rect.get_x() + rect.get_width() / 2, height),
                         xytext=(0, 3), 
                         textcoords="offset points",
-                        ha='center', va='bottom', fontsize=9, fontweight='bold')
+                        ha='center', va='bottom', fontsize=16, fontweight='bold')
 
     autolabel(stat)
     autolabel(dyn)
@@ -97,7 +97,8 @@ def plot_reduction(check_path, output_png):
     plt.tight_layout()
     os.makedirs(os.path.dirname(output_png), exist_ok=True)
     plt.savefig(output_png, dpi=300)
-    print(f"Grouped average graph saved to: {output_png}")
+    plt.savefig("plots/imgs/polybench_stat_vs_dyn_checks.pdf", bbox_inches="tight")
+
 
 # call to plot averaged static and dynamic reductions 
 plot_reduction(

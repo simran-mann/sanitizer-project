@@ -48,13 +48,13 @@ def plot_reduction(check_path, output_png):
     stat = plt.bar(x - width/2, s_vals, width, label='Static', color='#a1a1f7')
     dyn = plt.bar(x + width/2, d_vals, width, label='Dynamic', color='#f7b557')
 
-    # Styling
-    plt.title('Check Reductions across Local Benchmarks', fontweight='bold', fontsize=15, pad=20)
-    plt.ylabel('Reduction (%)', fontweight='bold')
-    plt.xlabel('Benchmarks', fontweight='bold')
-    plt.xticks(x, stats, rotation=25)
+    # formatting
+    plt.title('Check Reductions across Local Benchmarks', fontweight='bold', fontsize=25, pad=20)
+    plt.ylabel('Reduction (%)', fontsize=20, fontweight='bold')
+    plt.xlabel('Benchmarks', fontsize=20, fontweight='bold')
+    plt.xticks(x, stats, fontsize=20, fontweight='bold', rotation=25)
     plt.ylim(0, max(max(s_vals), max(d_vals)) + 10)
-    plt.legend()
+    plt.legend(ncol=3, fontsize=18, frameon=False)
     plt.grid(axis='y', linestyle=':', alpha=0.7)
 
     # add text labels on top of bars
@@ -65,7 +65,7 @@ def plot_reduction(check_path, output_png):
                         xy=(rect.get_x() + rect.get_width() / 2, height),
                         xytext=(0, 3), 
                         textcoords="offset points",
-                        ha='center', va='bottom', fontsize=9, fontweight='bold')
+                        ha='center', va='bottom', fontsize=16, fontweight='bold')
 
     autolabel(stat)
     autolabel(dyn)
@@ -73,6 +73,8 @@ def plot_reduction(check_path, output_png):
     plt.tight_layout()
     os.makedirs(os.path.dirname(output_png), exist_ok=True)
     plt.savefig(output_png, dpi=300)
+    plt.savefig("plots/imgs/local_stat_dyn_checks.pdf", bbox_inches="tight")
+
 
 # call to plot static and dynamic reductions 
 plot_reduction(

@@ -50,7 +50,7 @@ def plot_overheads(tool_path, sz_path, output_png):
     tool_oh = [t_data[p]['opt'] / t_data[p]['base'] for p in programs]
     
     # compute sanrazor overhead
-    sz_oh = [sz_data[p]['sr'] / t_data[p]['base'] for p in programs]
+    sz_oh = [sz_data[p]['sr'] / sz_data[p]['base'] for p in programs]
 
     # plot
     x = np.arange(len(programs))
@@ -66,17 +66,17 @@ def plot_overheads(tool_path, sz_path, output_png):
     plt.axhline(y=1.0, color='black', linestyle='--', alpha=0.8, label='Base (No Tool)')
 
     # Labels and Titles
-    plt.title('Sanitizer Overhead across Local Benchmarks', fontweight='bold', fontsize=14)
-    plt.ylabel('Slowdown Factor (x)', fontweight='bold')
-    plt.xlabel('Local Benchmarks', fontweight='bold')
-    plt.xticks(x, programs, rotation=25)
-    plt.legend()
+    plt.title('Sanitizer Overhead across Local Benchmarks', fontsize= 25, fontweight='bold')
+    plt.ylabel('Slowdown Factor (x)', fontsize=20, fontweight='bold')
+    plt.xlabel('Local Benchmarks', fontsize=20, fontweight='bold')
+    plt.xticks(x, programs, fontsize=20, fontweight='bold', rotation=25)
+    plt.legend(fontsize=16)
     plt.grid(axis='y', linestyle=':', alpha=0.7)
 
     plt.tight_layout()
     os.makedirs(os.path.dirname(output_png), exist_ok=True)
     plt.savefig(output_png, dpi=300)
-    print(f"Unified overhead graph saved as: {output_png}")
+    plt.savefig("plots/imgs/local_overhead.pdf", bbox_inches="tight")
 
 plot_overheads(
     "results/local_bench/O2/runtime_summary.txt", 

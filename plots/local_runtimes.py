@@ -60,19 +60,24 @@ def plot_all_tools(tool_file, sz_file, output_png):
     plt.bar(x + 2.5*width, sz_opts,    width, label='SanRazor Opt', color='#2584a7') 
 
     # formatting
-    plt.ylabel('Execution Time (seconds)', fontweight='bold')
-    plt.xlabel('Local Benchmarks', fontweight='bold')
-    plt.title('Sanitizer Runtimes across Local Benchmarks', fontsize=14, fontweight='bold')
-    plt.xticks(x, stats, rotation=25, ha='right')
+    plt.ylabel('Execution Time (s)', fontsize=20, fontweight='bold')
+    plt.xlabel('Benchmarks', fontsize=20, fontweight='bold')
+    plt.title('Sanitizer Runtimes across Local Benchmarks', fontsize=25, fontweight='bold')
+
+    plt.xticks(x, stats, rotation=30, ha='right', fontsize=20, fontweight='bold')
+    plt.yticks(fontsize=20)
+
     
     # format legend 
-    plt.legend(loc='upper left', bbox_to_anchor=(1, 1))
-    plt.grid(axis='y', linestyle='--', alpha=0.3)
+    plt.legend(ncol=3, fontsize=18, frameon=False)
+    plt.grid(axis='y', linestyle='--', alpha=0.2)
     plt.tight_layout()
+
 
     # save plot
     output_dir = os.path.dirname(output_png)
     plt.savefig(output_png, dpi=300)
+    plt.savefig("plots/local_runtimes_plot.pdf", bbox_inches="tight")
 
 # execute the plotting function
 plot_all_tools(

@@ -5,10 +5,10 @@ import os
 # define the PolyBench groups for averaging
 GROUPS = {
     'Datamining': ['correlation', 'covariance'],
-    'LA Kernels (BLAS)': ['2mm', '3mm', 'atax', 'bicg', 'doitgen', 'gemm', 'gemver', 
+    'LA Kernels (BLAS)': ['2mm', '3mm', 'atax', 'bicg', 'cholesky', 'doitgen', 'gemm', 'gemver', 
                           'gesummv', 'mvt', 'symm', 'syr2k', 'syrk', 'trisolv', 'trmm'],
-    'LA Solvers': ['cholesky', 'durbin', 'gramschmidt', 'lu', 'ludcmp'],
-    'Medley': ['floyd-warshall', 'reg_detect', 'dynprog'],
+    'LA Solvers': ['durbin', 'dynprog', 'gramschmidt', 'lu', 'ludcmp'],
+    # 'Medley': ['floyd-warshall', 'reg_detect', ],
     'Stencils': ['adi', 'fdtd-2d', 'fdtd-apml', 'jacobi-1d-imper', 'jacobi-2d-imper', 'seidel-2d']
 }
 
@@ -68,15 +68,18 @@ def plot_all_tools_avg(tool_file, output_png):
     plt.bar(x + 1.5*width, [s['ToolOpt']  for s in group_stats], width, label='ToolOpt',  color='#24e5d2')
 
     # formatting
-    plt.title('Average Sanitizer Runtimes across PolyBench Domains', fontweight='bold', fontsize=16, pad=20)
-    plt.ylabel('Average Runtime (seconds)', fontweight='bold')
-    plt.xlabel('PolyBench Domains', fontweight='bold')
-    plt.xticks(x, names, rotation=15)
-    plt.legend()
+    plt.title('Average Sanitizer Runtimes across PolyBench Domains', fontweight='bold', fontsize=25, pad=20)
+    plt.ylabel('Average Runtime (seconds)', fontsize=20, fontweight='bold')
+    plt.xlabel('PolyBench Domains', fontsize=20, fontweight='bold')
+    plt.xticks(x, names, fontsize=20, fontweight='bold', rotation=15)
+    plt.yticks(fontsize=16)
+    plt.legend(ncol=4, fontsize=16, frameon=False)
     plt.grid(axis='y', linestyle='--', alpha=0.3)
     
     plt.tight_layout()
     plt.savefig(output_png, dpi=300)
+    plt.savefig("plots/imgs/poly_avg_runtimes.pdf", bbox_inches="tight")
+
 
 # call function to plot runtimes
 plot_all_tools_avg(
