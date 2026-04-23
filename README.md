@@ -1,7 +1,7 @@
 ## Instructions for running the tool
 
 
-First you will need to initialize the course environment if you are working on CSIL. Otherwise you will need to ensure you have LLVM{still need to check which versions will be compatible, fill in later} and CMake installed in your environment. 
+First you will need to initialize the course environment if you are working on CSIL. Otherwise you will need to ensure you have LLVM 21.1.8  and CMake installed in your environment. 
 
 ```bash
 source  /usr/shared/CMPT/faculty/wsumner/base/env745/bin/activate
